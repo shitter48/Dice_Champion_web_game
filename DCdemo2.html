@@ -1,0 +1,4429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #frame {
+            position: fixed;
+            left: 25%;
+            width: 50%;
+            height: 98%;
+            border: 2px;
+            border-color: black;
+            border-style: solid;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            object-fit: contain;
+            background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0)), url(image/background_02.jpg) no-repeat 0% 20%/ cover;
+        }
+
+        #title_text {
+            position: fixed;
+            width: 700px;
+            height: auto;
+            left: 32%;
+            top: 10%;
+        }
+
+        #title_picture {
+            position: fixed;
+            right: 23%;
+            bottom: -4.5%;
+            width: 500px;
+            height: auto;
+        }
+
+        #start {
+            left: 47%;
+            top: 50%;
+            width: 120px;
+            height: 40px;
+            font-size: 30px;
+            font: bolder;
+            font-weight: bolder;
+            font-family: monospace;
+            border-radius: 3px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        #guide {
+            left: 47%;
+            top: 60%;
+            width: 120px;
+            height: 40px;
+            font-size: 30px;
+            font: bolder;
+            font-weight: bolder;
+            font-family: monospace;
+            border-radius: 3px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        #guideframe {
+            position: fixed;
+            display: none;
+            left: 25%;
+            top: 20%;
+            width: 50%;
+            height: 60%;
+            text-align: center;
+            background-color: lightcoral;
+            background-size: 900px auto;
+            background-repeat: no-repeat;
+            background-position: center;
+            object-fit: contain;
+            background-image: url(image/guide1.png);
+            z-index: 10;
+        }
+
+        #guide1 {
+            left: 47%;
+            bottom: 15%;
+            width: 120px;
+            height: 40px;
+            font-size: 30px;
+            font: bolder;
+            font-weight: bolder;
+            font-family: monospace;
+            border-radius: 3px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        #victory {
+            position: relative;
+            display: none;
+            left: 5%;
+            top: 30%;
+            width: 99%;
+            height: 70%;
+            font-size: 120px;
+            font-weight: bolder;
+            color: red;
+            -webkit-text-stroke: 2px black;
+            /* vertical-align: middle; */
+            text-align: center;
+            z-index: 10;
+        }
+
+        #victory_button {
+            position: absolute;
+            left: 38%;
+            top: 40%;
+            width: 120px;
+            height: 40px;
+            color: black;
+            font-size: 30px;
+            font-weight: 400;
+            font-family: monospace;
+            border-radius: 3px;
+            /* -webkit-text-stroke: black; */
+        }
+
+        /* #victory::before {
+            content: '';
+            display: inline-block;
+            height: 80%;
+            vertical-align: middle;
+            text-align: center;
+        } */
+
+        #defeated {
+            position: relative;
+            display: none;
+            left: 0%;
+            top: 15%;
+            width: 99%;
+            height: 70%;
+            font-size: 80px;
+            font-weight: bolder;
+            color: red;
+            -webkit-text-stroke: 2px black;
+            /* vertical-align: middle; */
+            text-align: center;
+            z-index: 10;
+        }
+
+        #defeated_button {
+            position: absolute;
+            left: 44%;
+            top: 40%;
+            width: 120px;
+            height: 40px;
+            color: black;
+            font-size: 30px;
+            font-weight: 400;
+            font-family: monospace;
+            border-radius: 3px;
+            /* -webkit-text-stroke: black; */
+        }
+
+        #defeated_dead {
+            position: absolute;
+            left: 40%;
+            bottom: -15%;
+        }
+
+        /* #defeated::before {
+            content: '';
+            display: inline-block;
+            height: 80%;
+            vertical-align: middle;
+            text-align: center;
+        } */
+
+        #map {
+            display: none;
+            position: fixed;
+            left: 25%;
+            width: 50%;
+            height: 98%;
+            border: 2px;
+            border-color: black;
+            border-style: solid;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            object-fit: contain;
+            background-image: url(image/map.png);
+        }
+
+        .eventpoint {
+            display: none;
+            position: fixed;
+        }
+
+        .eventpoint:hover {
+            transform: scale(1.2, 1.2);
+        }
+
+        #event1 {
+            left: 678px;
+            bottom: 230px;
+        }
+
+        #event2 {
+            left: 970px;
+            bottom: 290px;
+        }
+
+        #event3 {
+            left: 660px;
+            top: 300px;
+        }
+
+        #event4 {
+            right: 510px;
+            top: 470px;
+        }
+
+        #event5 {
+            right: 513px;
+            top: 175px;
+        }
+
+        #event6 {
+            left: 955px;
+            top: 295px;
+            width: 90px;
+            height: 100px;
+        }
+
+        #box1 {
+            left: 1257px;
+            bottom: 255px;
+            width: 55px;
+            height: 55px;
+        }
+
+        #box2 {
+            left: 735px;
+            bottom: 425px;
+            width: 55px;
+            height: 55px;
+        }
+
+        #camp_fire1 {
+            left: 960px;
+            top: 180px;
+            width: 65px;
+            height: 65px;
+        }
+
+        #store1 {
+            right: 730px;
+            bottom: 435px;
+            width: 70px;
+            height: 70px;
+        }
+
+        #store2 {
+            left: 650px;
+            top: 163px;
+            width: 70px;
+            height: 70px;
+        }
+
+        #smith1 {
+            right: 510px;
+            top: 315px;
+            width: 60px;
+            height: 60px;
+        }
+
+        #smith2 {
+            left: 490px;
+            bottom: 415px;
+            width: 60px;
+            height: 60px;
+        }
+
+        #finalevent {
+            left: 47.5%;
+            top: 1%;
+            width: 130px;
+            height: 130px;
+        }
+
+        #player {
+            display: none;
+            position: fixed;
+            left: 49%;
+            bottom: 1%;
+            width: 120px;
+            height: 200px;
+            transition: left 1s linear 0.2s, bottom 1s linear 0.2s;
+        }
+
+        #gameframe {
+            display: block;
+        }
+
+        #healthBar:hover:before,
+        #deathcount:hover:before,
+        #sword:hover:before,
+        #dagger:hover:before,
+        #invest:hover:before,
+        #cutinto2:hover:before,
+        #wildstrike:hover:before,
+        #gaindice1:hover:before,
+        #twelvesides:hover:before,
+        #recharge:hover:before,
+        #reroll:hover:before,
+        #plus1:hover:before,
+        #powerfulhit:hover:before,
+        #moredices:hover:before {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #deathcount {
+            position: fixed;
+            right: 35%;
+            top: -10%;
+            width: 120px;
+            height: 30px;
+            transition: top 0.5s ease;
+        }
+
+        #skull {
+            position: fixed;
+            right: 35%;
+            top: -20%;
+            width: 120px;
+            height: 120px;
+            transition: top 0.5s ease;
+        }
+
+        #distance {
+            position: fixed;
+            right: 32%;
+            top: -20%;
+            font-size: 65px;
+            font: bolder;
+            font-family: fantasy;
+            -webkit-text-stroke: 1px black;
+            text-align: center;
+            color: orange;
+            transition: top 0.5s ease;
+        }
+
+        #deathcount:before {
+            content: '敵人距離';
+            visibility: hidden;
+            opacity: 0;
+            width: 100px;
+            background-color: wheat;
+            color: black;
+            text-align: center;
+            border-radius: 3px;
+            padding: 3px 0;
+            transition: opacity 0.5s ease-in-out;
+            position: absolute;
+            z-index: 1;
+            right: -30%;
+            top: -300%;
+            font-size: 20px;
+        }
+
+        #healthBar {
+            position: fixed;
+            display: flex;
+            left: 32%;
+            top: -17%;
+            width: 150px;
+            height: 35px;
+            transition: top 0.5s ease;
+        }
+
+        #healthBar:before {
+            content: '敵人生命值';
+            visibility: hidden;
+            opacity: 0;
+            width: 120px;
+            background-color: wheat;
+            color: black;
+            text-align: center;
+            border-radius: 3px;
+            padding: 3px 0;
+            transition: opacity 0.5s ease-in-out;
+            position: absolute;
+            z-index: 1;
+            right: 10%;
+            top: -350%;
+            font-size: 20px;
+        }
+
+        #healthBarG {
+            width: 100%;
+            background-color: rgba(82, 235, 11, 0.774);
+            transition: width 0.4s linear;
+        }
+
+        #healthBarR {
+            width: 0%;
+            background-color: red;
+            transition: width 0.4s linear;
+        }
+
+        #enemyHealth {
+            position: relative;
+            left: 40px;
+            bottom: 170px;
+            width: 10px;
+            height: 10px;
+            color: orange;
+            font-size: 75px;
+            font: bolder;
+            font-weight: 500;
+            font-family: fantasy;
+            -webkit-text-stroke: 2px black;
+            text-align: center;
+        }
+
+        #damagetoHealth {
+            position: fixed;
+            right: 900px;
+            top: 10px;
+            width: 10px;
+            height: 10px;
+            color: red;
+            font-size: 60px;
+            font: bolder;
+            font-weight: 500;
+            font-family: fantasy;
+            -webkit-text-stroke: 0.5px black;
+            text-align: center;
+            transition: opacity 1.5s ease-in-out;
+            opacity: 1;
+            z-index: 2;
+        }
+
+        #hit_effect {
+            position: fixed;
+            right: 822px;
+            top: 53px;
+            width: 110px;
+            height: 110px;
+            transition: opacity 1.5s ease-in-out;
+            opacity: 1;
+            visibility: hidden;
+        }
+
+        #enemy {
+            position: fixed;
+            left: 40%;
+            top: -500px;
+            width: 350px;
+            height: 350px;
+            background-image: url(image/slime.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: top 0.5s ease, opacity 1s ease;
+            z-index: 1;
+        }
+
+        #champ {
+            position: fixed;
+            left: 44.5%;
+            top: 1500px;
+            width: 180px;
+            height: 300px;
+            background-image: url(image/diceman.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: top 0.5s ease;
+            z-index: 2;
+        }
+
+        #choiceTitle {
+            position: fixed;
+            display: none;
+            left: 40.5%;
+            top: 10%;
+            font-size: 60px;
+            font-weight: bolder;
+            font-family: fantasy;
+            -webkit-text-stroke: 0.5px gold;
+        }
+
+        #choiceBox {
+            position: fixed;
+            display: none;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            height: 700px;
+            width: 50%;
+            bottom: 20%;
+        }
+
+        #choice1 {
+            display: block;
+            left: 5%;
+            top: 0%;
+            width: 350px;
+            height: 350px;
+            background-color: rgb(209, 52, 84);
+            border: solid 3px black;
+            text-align: center;
+        }
+
+        #choice2 {
+            display: block;
+            left: 5%;
+            top: 0%;
+            width: 350px;
+            height: 350px;
+            background-color: cadetblue;
+            border: solid 3px black;
+            text-align: center;
+        }
+
+        .choice:hover {
+            transform: scale(1.1, 1.1);
+        }
+
+        .choicePicture {
+            position: relative;
+            top: 5%;
+            width: auto;
+            height: auto;
+            max-height: 200px;
+            max-width: 200px;
+            object-fit: contain;
+            border: 2px black solid;
+            background-color: white;
+        }
+
+        .choiceDescription {
+            position: relative;
+            bottom: 0;
+            font-size: 26px;
+            font-family: Microsoft JhengHei, DFKai-sb, monospace, cursive, sans-serif;
+            font-weight: bolder;
+            color: black;
+        }
+
+        #rewardTitle {
+            position: fixed;
+            display: none;
+            left: 40.5%;
+            top: 13%;
+            font-size: 60px;
+            font-weight: bolder;
+            font-family: fantasy;
+            -webkit-text-stroke: 0.5px gold;
+        }
+
+        #rewardBox {
+            position: fixed;
+            display: none;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            height: 700px;
+            width: 50%;
+            bottom: 20%;
+        }
+
+        #reward1 {
+            display: none;
+            left: 5%;
+            top: 0%;
+            width: 280px;
+            height: 280px;
+            background-color: wheat;
+            border: solid 3px black;
+            text-align: center;
+        }
+
+        #reward2 {
+            display: none;
+            left: 5%;
+            top: 0%;
+            width: 280px;
+            height: 280px;
+            background-color: wheat;
+            border: solid 3px black;
+            text-align: center;
+        }
+
+        #reward3S {
+            display: none;
+            left: 5%;
+            top: 0%;
+            width: 280px;
+            height: 280px;
+            background-color: rgb(209, 52, 84);
+            border: solid 3px black;
+            text-align: center;
+        }
+
+        #reward4S {
+            display: none;
+            left: 5%;
+            top: 0%;
+            width: 280px;
+            height: 280px;
+            background-color: rgb(209, 52, 84);
+            border: solid 3px black;
+            text-align: center;
+        }
+
+        #reward5 {
+            display: none;
+            left: 5%;
+            top: 0%;
+            width: 280px;
+            height: 280px;
+            background-color: wheat;
+            border: solid 3px black;
+            text-align: center;
+        }
+
+        #reward6 {
+            display: none;
+            left: 5%;
+            top: 0%;
+            width: 280px;
+            height: 280px;
+            background-color: wheat;
+            border: solid 3px black;
+            text-align: center;
+        }
+
+        #reward3D {
+            display: none;
+            left: 5%;
+            top: 0%;
+            width: 280px;
+            height: 280px;
+            background-color: cadetblue;
+            border: solid 3px black;
+            text-align: center;
+        }
+
+        #reward4D {
+            display: none;
+            left: 5%;
+            top: 0%;
+            width: 280px;
+            height: 280px;
+            background-color: cadetblue;
+            border: solid 3px black;
+            text-align: center;
+        }
+
+        #R4Ddescription {
+            font-size: 20px;
+        }
+
+        .reward:hover {
+            transform: scale(1.1, 1.1);
+        }
+
+        .rewardPicture {
+            position: relative;
+            top: 5%;
+            width: auto;
+            height: auto;
+            max-height: 150px;
+            max-width: 150px;
+            object-fit: contain;
+            border: 2px black solid;
+            background-color: white;
+        }
+
+        .rewardDescription {
+            position: relative;
+            bottom: 0;
+            font-size: 22px;
+            font-family: Microsoft JhengHei, DFKai-sb, monospace, cursive, sans-serif;
+            font-weight: bold;
+            /* -webkit-text-stroke: 0.2px cornflowerblue; */
+            color: black;
+        }
+
+        #hideReward {
+            display: none;
+            position: fixed;
+            left: 48%;
+            bottom: 30%;
+            width: 100px;
+            height: 30px;
+            font-size: 20px;
+            font: bolder;
+            font-weight: bolder;
+            font-family: monospace;
+            border-radius: 3px;
+            border-color: coral;
+            background-color: coral;
+        }
+
+        #hideReward:hover {
+            background-color: wheat;
+            border-color: whitesmoke;
+            color: red;
+        }
+
+        #hideReward:active {
+            background-color: crimson;
+            color: black;
+            border-color: red;
+        }
+
+        #sword {
+            display: none;
+            position: fixed;
+            left: -50%;
+            bottom: 30%;
+            width: 200px;
+            height: 200px;
+            background-image: url(image/sword.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: left 0.5s ease;
+        }
+
+        #sword:before {
+            content: '武器：長劍\A造成等同於當前骰子點數的傷害';
+            white-space: pre-line;
+            visibility: hidden;
+            opacity: 0;
+            width: 140px;
+            background-color: wheat;
+            color: black;
+            text-align: center;
+            border-radius: 3px;
+            padding: 3px 0;
+            transition: opacity 0.5s ease-in-out;
+            position: absolute;
+            z-index: 1;
+            left: 65%;
+            top: 30%;
+        }
+
+        #dagger {
+            display: none;
+            position: fixed;
+            left: -50%;
+            bottom: 25%;
+            width: 280px;
+            height: 280px;
+            background-image: url(image/dagger.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: left 0.5s ease;
+        }
+
+        #dagger:before {
+            content: '武器：短刀\A造成1點傷害，可重複使用。連續放入相同點數骰子將獲得額外傷害及骰子';
+            white-space: pre-line;
+            visibility: hidden;
+            opacity: 0;
+            width: 150px;
+            background-color: wheat;
+            color: black;
+            text-align: center;
+            border-radius: 3px;
+            padding: 3px 0;
+            transition: opacity 0.5s ease-in-out;
+            position: absolute;
+            z-index: 1;
+            left: 65%;
+            top: 30%;
+        }
+
+        #powerfulhit {
+            display: none;
+            position: fixed;
+            left: -50%;
+            bottom: 15%;
+            width: 90px;
+            height: 90px;
+            background-image: url(image/muscle.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: left 0.5s ease;
+        }
+
+        #powerfulhit:hover {
+            transform: scale(1.2, 1.2);
+        }
+
+        #powerfulhit:before {
+            content: '絕招：比較用力的打\A下次攻擊造成兩倍傷害';
+            white-space: pre-line;
+            visibility: hidden;
+            opacity: 0;
+            width: 140px;
+            background-color: wheat;
+            color: black;
+            text-align: center;
+            border-radius: 3px;
+            padding: 3px 0;
+            transition: opacity 0.5s ease-in-out;
+            position: absolute;
+            z-index: 1;
+            right: -130%;
+            bottom: 50%;
+            font-size: 14px;
+        }
+
+        #moredices {
+            display: none;
+            position: fixed;
+            left: -50%;
+            bottom: 15%;
+            width: 130px;
+            height: 130px;
+            background-image: url(image/random_shit2.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: left 0.5s ease;
+        }
+
+        #moredices:hover {
+            transform: scale(1.2, 1.2);
+        }
+
+        #moredices:before {
+            content: '絕招：拿去丟一丟啦\A獲得三顆1~3點的骰子';
+            white-space: pre-line;
+            visibility: hidden;
+            opacity: 0;
+            width: 140px;
+            background-color: wheat;
+            color: black;
+            text-align: center;
+            border-radius: 3px;
+            padding: 3px 0;
+            transition: opacity 0.5s ease-in-out;
+            position: absolute;
+            z-index: 1;
+            right: -5%;
+            bottom: -35%;
+            font-size: 14px;
+        }
+
+        #plus1 {
+            position: fixed;
+            right: -100%;
+            bottom: -200%;
+            width: 100px;
+            height: 100px;
+            background-image: url(image/hands.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: right 0.5s ease;
+        }
+
+        #plus1:before {
+            content: '主動技能：出老千\A放入一顆骰子，使其點數+1';
+            white-space: pre-line;
+            visibility: hidden;
+            opacity: 0;
+            width: 140px;
+            background-color: wheat;
+            color: black;
+            text-align: center;
+            border-radius: 3px;
+            padding: 3px 0;
+            transition: opacity 0.5s ease-in-out;
+            position: absolute;
+            z-index: 1;
+            right: 110%;
+            bottom: 20%;
+            font-size: 16px;
+        }
+
+        #reroll {
+            position: fixed;
+            right: -100%;
+            bottom: -200%;
+            width: 100px;
+            height: 90px;
+            background-image: url(image/icepop.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: right 0.5s ease;
+        }
+
+        #reroll:before {
+            content: '主動技能：再來一支\A重骰一顆骰子，一回合可使用三次';
+            white-space: pre-line;
+            visibility: hidden;
+            opacity: 0;
+            width: 140px;
+            background-color: wheat;
+            color: black;
+            text-align: center;
+            border-radius: 3px;
+            padding: 3px 0;
+            transition: opacity 0.5s ease-in-out;
+            position: absolute;
+            z-index: 1;
+            right: 80%;
+            bottom: 25%;
+            font-size: 15px;
+        }
+
+        #recharge {
+            position: fixed;
+            right: -100%;
+            bottom: -200%;
+            width: 100px;
+            height: 100px;
+            background-image: url(image/recharge.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: right 0.5s ease;
+        }
+
+        #recharge:before {
+            content: '主動技能：快速充電\A放入兩顆點數相同的骰子，可再次使用絕招，並造成等同骰子點數的傷害';
+            white-space: pre-line;
+            visibility: hidden;
+            opacity: 0;
+            width: 185px;
+            background-color: wheat;
+            color: black;
+            text-align: center;
+            border-radius: 3px;
+            padding: 3px 0;
+            transition: opacity 0.5s ease-in-out;
+            position: absolute;
+            z-index: 1;
+            right: 115%;
+            bottom: 12%;
+            font-size: 15px;
+        }
+
+        #twelvesides {
+            position: fixed;
+            right: -100%;
+            bottom: -200%;
+            width: 85px;
+            height: 85px;
+            background-image: url(image/huge_cup.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: right 0.5s ease;
+            opacity: 1;
+        }
+
+        #twelvesides:before {
+            content: '被動技能：超大杯\A減少兩顆骰子，獲得一顆12面骰';
+            white-space: pre-line;
+            visibility: hidden;
+            opacity: 0;
+            width: 140px;
+            background-color: wheat;
+            color: black;
+            text-align: center;
+            border-radius: 3px;
+            padding: 3px 0;
+            transition: opacity 0.5s ease-in-out;
+            position: absolute;
+            z-index: 1;
+            right: 110%;
+            bottom: 20%;
+            font-size: 15px;
+        }
+
+        #gaindice1 {
+            position: fixed;
+            right: -100%;
+            bottom: -200%;
+            width: 90px;
+            height: 90px;
+            background-image: url(image/gain_dices.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: right 0.5s ease;
+            opacity: 1;
+        }
+
+        #gaindice1:before {
+            content: '被動技能：+1\A獲得一顆骰子';
+            white-space: pre-line;
+            visibility: hidden;
+            opacity: 0;
+            width: 140px;
+            background-color: wheat;
+            color: black;
+            text-align: center;
+            border-radius: 3px;
+            padding: 3px 0;
+            transition: opacity 0.5s ease-in-out;
+            position: absolute;
+            z-index: 1;
+            right: 110%;
+            bottom: 25%;
+            font-size: 16px;
+        }
+
+        #wildstrike {
+            position: fixed;
+            right: -100%;
+            bottom: -200%;
+            width: 100px;
+            height: 100px;
+            background-image: url(image/fighting.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: right 0.5s ease;
+            opacity: 1;
+        }
+
+        #wildstrike:before {
+            content: '主動技能:瞎七八亂打\A放入兩顆骰子，造成隨機0~8點傷害';
+            white-space: pre-line;
+            visibility: hidden;
+            opacity: 0;
+            width: 140px;
+            background-color: wheat;
+            color: black;
+            text-align: center;
+            border-radius: 3px;
+            padding: 3px 0;
+            transition: opacity 0.5s ease-in-out;
+            position: absolute;
+            z-index: 1;
+            right: 110%;
+            bottom: 20%;
+            font-size: 16px;
+        }
+
+        #cutinto2 {
+            position: fixed;
+            right: -100%;
+            bottom: -200%;
+            width: 85px;
+            height: 85px;
+            background-image: url(image/slice.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: right 0.5s ease;
+            opacity: 1;
+        }
+
+        #cutinto2:before {
+            content: '主動技能:切八段\A放入一顆骰子，將它拆成兩顆骰子';
+            white-space: pre-line;
+            visibility: hidden;
+            opacity: 0;
+            width: 140px;
+            background-color: wheat;
+            color: black;
+            text-align: center;
+            border-radius: 3px;
+            padding: 3px 0;
+            transition: opacity 0.5s ease-in-out;
+            position: absolute;
+            z-index: 1;
+            right: 110%;
+            bottom: 20%;
+            font-size: 16px;
+        }
+
+        #invest {
+            position: fixed;
+            right: -100%;
+            bottom: -200%;
+            width: 95px;
+            height: 95px;
+            background-image: url(image/stonks.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: right 0.5s ease;
+            opacity: 1;
+        }
+
+        #invest:before {
+            content: '主動技能:投資未來\A放入兩顆偶數骰子，下回合必定骰出兩顆點數2以下的骰子';
+            white-space: pre-line;
+            visibility: hidden;
+            opacity: 0;
+            width: 160px;
+            background-color: wheat;
+            color: black;
+            text-align: center;
+            border-radius: 3px;
+            padding: 3px 0;
+            transition: opacity 0.5s ease-in-out;
+            position: absolute;
+            z-index: 1;
+            right: 110%;
+            bottom: 5%;
+            font-size: 16px;
+        }
+
+        .button,
+        #hidereward {
+            position: fixed;
+            background-color: coral;
+            border-color: coral;
+            font-weight: bolder;
+        }
+
+        #roll {
+            right: 34%;
+            bottom: -50%;
+            width: 110px;
+            height: 40px;
+            font-size: 30px;
+            font: bolder;
+            border-radius: 3px;
+            transition: bottom 0.5s ease;
+        }
+
+        #end {
+            right: 34.7%;
+            bottom: -60%;
+            width: 90px;
+            height: 30px;
+            font-size: 16px;
+            border-radius: 2px;
+            transition: bottom 0.5s ease;
+        }
+
+        .button:hover {
+            background-color: wheat;
+            border-color: whitesmoke;
+            color: red;
+            -webkit-text-stroke: red;
+        }
+
+        .button:active {
+            background-color: crimson;
+            color: black;
+            border-color: red;
+        }
+
+        #dice1,
+        #dice5 {
+            position: fixed;
+            right: 41%;
+            bottom: -100px;
+            width: 100px;
+            height: 80px;
+            transition: bottom 0.5s ease;
+        }
+
+        #dice2,
+        #dice6 {
+            position: fixed;
+            right: 36%;
+            bottom: -100px;
+            width: 100px;
+            height: 80px;
+            transition: bottom 0.5s ease;
+        }
+
+        #dice3,
+        #dice7 {
+            position: fixed;
+            right: 31%;
+            bottom: -100px;
+            width: 100px;
+            height: 80px;
+            transition: bottom 0.5s ease;
+        }
+
+        #dice4,
+        #dice8 {
+            position: fixed;
+            right: 26%;
+            bottom: -100px;
+            width: 100px;
+            height: 80px;
+            transition: bottom 0.5s ease;
+        }
+
+        .dice {
+            width: 80px;
+            height: 80px;
+            visibility: hidden;
+        }
+
+        .dice:hover {
+            transform: scale(1.1, 1.1);
+        }
+    </style>
+    <title>Dice Champion</title>
+    <script src="jquery-3.6.0.js"></script>
+</head>
+
+<body>
+    <div id="frame">
+        <div id="title">
+            <img src="image/title.png" id="title_text">
+            <button id="start" class="button" onclick="choose_weapon()">Start!</button>
+            <button id="guide" class="button" onclick="guide()">Guide</button>
+            <img src="image/diceman_lay.png" id="title_picture">
+        </div>
+        <div id="guideframe">
+            <button id="guide1" class="button" onclick="guide1()" data-value="">OK</button>
+        </div>
+        <div id="victory">你真棒！<br>
+            <button onclick="reward_second()" id="victory_button" class="button">Yeah!
+            </button>
+        </div>
+        <div id="defeated">
+            <p>勝敗乃兵家常事也<br>大俠請重新來過吧</p><br>
+            <button id="defeated_button" class="button" onclick="restartgame()">好八</button>
+            <img src="image/diceman_dead.png" id="defeated_dead">
+        </div>
+        <div id="map">
+            <img src="image/camp_fire.png" id="camp_fire1" class="eventpoint">
+            <img src="image/store.png" id="store1" class="eventpoint">
+            <img src="image/store.png" id="store2" class="eventpoint">
+            <img src="image/small_box.png" id="box1" class="eventpoint">
+            <img src="image/small_box.png" id="box2" class="eventpoint">
+            <img src="image/blacksmith.png" id="smith1" class="eventpoint">
+            <img src="image/blacksmith.png" id="smith2" class="eventpoint">
+            <img src="image/event.png" id="event1" class="eventpoint">
+            <img src="image/event.png" id="event2" class="eventpoint">
+            <img src="image/event.png" id="event3" class="eventpoint">
+            <img src="image/event.png" id="event4" class="eventpoint">
+            <img src="image/event.png" id="event5" class="eventpoint">
+            <img src="image/event.png" id="event6" class="eventpoint">
+            <img src="image/slime_king.png" id="finalevent" class="eventpoint">
+            <img src="image/diceman.png" id="player">
+        </div>
+        <div id="gameframe">
+            <div id="healthBar" class="character">
+                <p id="enemyHealth" data-value="20">20</p>
+                <div id="healthBarG" class="healthBar"></div>
+                <div id="healthBarR" class="healthBar"></div>
+                <p id="damagetoHealth"></p>
+                <img src="" id="hit_effect">
+            </div>
+            <div id="deathcount" class="character"><img src="image/skull.png" id="skull">
+                <h1 id="distance" data-value="5">3</h1>
+            </div>
+            <div id="enemy" class="character"></div>
+            <div id="champ" class="character" data-value=""></div>
+            <div id="sword" class="weapon" ondrop="swordattack()" ondragover="allowDrop(event)"
+                ondragleave="dragLeave()" ondragenter="Enterweapon()" data-value=""></div>
+            <div id="dagger" class="weapon" ondrop="daggerattack()" ondragover="allowDrop(event)"
+                ondragleave="dragLeave()" ondragenter="Enterweapon()" data-value=""></div>
+            <div class="skill" id="powerfulhit" data-value="unused"></div>
+            <div class="skill" id="moredices" data-value="unused"></div>
+            <div class="skill" id="plus1" ondrop="plus1()" ondragover="allowDrop(event)" ondragleave="dragLeave()"
+                ondragenter="Enterskill()" data-value="unused"></div>
+            <div class="skill" id="reroll" ondrop="reroll()" ondragover="allowDrop(event)" ondragleave="dragLeave()"
+                ondragenter="Enterskill()" data-value="unused"></div>
+            <div class="skill" id="recharge" ondrop="recharge()" ondragover="allowDrop(event)" ondragleave="dragLeave()"
+                ondragenter="Enterskill()" data-value="unused"></div>
+            <div class="skill" id="twelvesides" data-value="untriggered"></div>
+            <div class="skill" id="gaindice1" data-value="untriggered"></div>
+            <div class="skill" id="wildstrike" ondrop="wildstrike()" ondragover="allowDrop(event)"
+                ondragleave="dragLeave()" ondragenter="Enterskill()" data-value="unused"></div>
+            <div class="skill" id="cutinto2" ondrop="cutinto2()" ondragover="allowDrop(event)" ondragleave="dragLeave()"
+                ondragenter="Enterskill()" data-value="unused"></div>
+            <div class="skill" id="invest" ondrop="invest()" ondragover="allowDrop(event)" ondragleave="dragLeave()"
+                ondragenter="Enterskill()" data-value="unused"></div>
+            <h1 class="choiceFrame" id="choiceTitle">選擇你的武器！</h1>
+            <div class="choiceFrame" id="choiceBox">
+                <div class="choice" id="choice1" onclick="sword_chosen()"><img src="image/sword.png"
+                        class="choicePicture">
+                    <p class="choiceDescription" id="C1description">武器：長劍<br>造成等同於當前骰子點數的傷害</p>
+                </div>
+                <div class="choice" id="choice2" onclick="dagger_chosen()"><img src="image/dagger.png"
+                        class="choicePicture">
+                    <p class="choiceDescription" id="C2description">武器：短刀<br>造成1點傷害，可重複使用。連續放入相同點數骰子將獲得額外傷害及骰子</p>
+                </div>
+            </div>
+            <h1 class="rewardFrame" id="rewardTitle">選擇兩個技能！</h1>
+            <div class="rewardFrame" id="rewardBox">
+                <div class="reward" id="reward1" onclick="recharge_first()"><img src="image/recharge.png"
+                        class="rewardPicture" id="rewardone">
+                    <p class="rewardDescription" id="R1description">主動技能：快速充電<br>放入兩顆點數相同的骰子，可再次使用絕招，並造成等同骰子點數的傷害
+                    </p>
+                </div>
+                <div class="reward" id="reward2" onclick="reroll_first()"><img src="image/icepop.png"
+                        class="rewardPicture" id="rewardtwo">
+                    <p class="rewardDescription" id="R2description">主動技能：再來一支<br>重骰一顆骰子，一回合可使用三次</p>
+                </div>
+                <div class="reward" id="reward3S" onclick="plus1_first()"><img src="image/hands.png"
+                        class="rewardPicture" id="rewardthreeS">
+                    <p class="rewardDescription" id="R3Sdescription">主動技能：出老千<br>放入一顆骰子，使其點數+1</p>
+                </div>
+                <div class="reward" id="reward4S" onclick="twelvesides_first()"><img src="image/huge_cup.png"
+                        class="rewardPicture" id="rewardfourS">
+                    <p class="rewardDescription" id="R4Sdescription">被動技能:超大杯<br>減少兩顆骰子，獲得一顆12面骰</p>
+                </div>
+                <div class="reward" id="reward5" onclick="gaindice1_first()"><img src="image/gain_dices.png"
+                        class="rewardPicture" id="rewardfive">
+                    <p class="rewardDescription" id="R5description">被動技能:+1<br>獲得一顆骰子</p>
+                </div>
+                <div class="reward" id="reward6" onclick="wildstrike_first()"><img src="image/fighting.png"
+                        class="rewardPicture" id="rewardsix">
+                    <p class="rewardDescription" id="R6description">主動技能:瞎七八亂打<br>放入兩顆骰子，造成隨機0~8點傷害</p>
+                </div>
+                <div class="reward" id="reward3D" onclick="cutinto2_first()"><img src="image/slice.png"
+                        class="rewardPicture" id="rewardthreeD">
+                    <p class="rewardDescription" id="R3Ddescription">主動技能:切八段<br>放入一顆骰子，將它拆成兩顆骰子</p>
+                </div>
+                <div class="reward" id="reward4D" onclick="invest_first()"><img src="image/stonks.png"
+                        class="rewardPicture" id="rewardfourD">
+                    <p class="rewardDescription" id="R4Ddescription">主動技能:投資未來<br>放入兩顆偶數骰子，下回合必定骰出兩顆點數2以下的骰子</p>
+                </div>
+            </div>
+            <button class="rewardFrame" id="hideReward">隱藏獎勵</button>
+            <button class="button" id="roll" value="unused" data-value="">ROLL!</button>
+            <div id="dice1" data-value="" draggable="true" ondragstart="dragStart(event)" //ondrag="dragging(event)">
+                <img src="" id="diceone" data-value="" class="dice">
+            </div>
+            <div id="dice2" data-value="" draggable="true" ondragstart="dragStart(event)" //ondrag="dragging(event)">
+                <img src="" id="dicetwo" data-value="" class="dice">
+            </div>
+            <div id="dice3" data-value="" draggable="true" ondragstart="dragStart(event)" //ondrag="dragging(event)">
+                <img src="" id="dicethree" data-value="" class="dice">
+            </div>
+            <div id="dice4" data-value="" draggable="true" ondragstart="dragStart(event)" //ondrag="dragging(event)">
+                <img src="" id="dicefour" data-value="" class="dice">
+            </div>
+            <div id="dice5" data-value="" draggable="true" ondragstart="dragStart(event)" //ondrag="dragging(event)">
+                <img src="" id="dicefive" data-value="" class="dice">
+            </div>
+            <div id="dice6" data-value="" draggable="true" ondragstart="dragStart(event)" //ondrag="dragging(event)">
+                <img src="" id="dicesix" data-value="" class="dice">
+            </div>
+            <div id="dice7" data-value="" draggable="true" ondragstart="dragStart(event)" //ondrag="dragging(event)">
+                <img src="" id="diceseven" data-value="" class="dice">
+            </div>
+            <div id="dice8" data-value="" draggable="true" ondragstart="dragStart(event)" //ondrag="dragging(event)">
+                <img src="" id="diceeight" data-value="" class="dice">
+            </div>
+            <button class="button" id="end" value="" data-value="" onclick="endturn()">End Turn</button>
+        </div>
+</body>
+<script>
+    function guide() {  //說明介面
+        $('#guideframe').css('display', 'block');
+    }
+    function guide1() {
+        var X = $('#guide1').prop('data-value');
+        if (X == 3) {
+            $('#guideframe').css('display', 'none');
+            $('#guideframe').css('background-image', 'url(image/guide1.png)');
+            document.getElementById('guide1').innerText = 'OK';
+            $('#guide1').prop('data-value', '');
+        } else if (X == 2) {
+            $('#guideframe').css('background-image', 'url(image/guide4.png)');
+            document.getElementById('guide1').innerText = '沒問題';
+            $('#guide1').prop('data-value', 3);
+        } else if (X == 1) {
+            $('#guideframe').css('background-image', 'url(image/guide3.png)');
+            document.getElementById('guide1').innerText = '知道了';
+            $('#guide1').prop('data-value', 2);
+        } else if (!X) {
+            $('#guideframe').css('background-image', 'url(image/guide2.png)');
+            document.getElementById('guide1').innerText = '好';
+            $('#guide1').prop('data-value', 1);
+        }
+    }
+    var roll_sound = new Audio('sound/roll_sound.mp3'); //ROLL音效
+    var hit_sound = new Audio('sound/hit_sound.mp3'); //攻擊音效
+    var enter_stage = new Audio('sound/enter_stage.mp3');  //進入關卡音效
+    function getback() {
+        $('#champ').css('top', '620px');  //主角撞過去後回到原點
+    }
+    function itemEnter() {  //物件進場動畫
+        setTimeout(function () {
+            $('#deathcount').css('top', '15%');
+            $('#skull').css('top', '10%');
+            $('#distance').css('top', '7%');
+            $('#healthBar').css('top', '17%');
+            $('#sword').css('left', '25%');
+            $('#dagger').css('left', '23.5%');
+            $('#powerfulhit').css('left', '28%');
+            $('#moredices').css('left', '27%');
+            $('#plus1').css('right', '26.5%');
+            $('#reroll').css('right', '26.5%');
+            $('#recharge').css('right', '26.5%');
+            $('#twelvesides').css('right', '26.5%');
+            $('#gaindice1').css('right', '26.5%');
+            $('#wildstrike').css('right', '26.5%');
+            $('#cutinto2').css('right', '26.5%');
+            $('#invest').css('right', '26.5%');
+            $('#roll').css('bottom', '27%');
+            $('#end').css('bottom', '3%');
+        }, 300);
+        setTimeout(function () {
+            $('#champ').css('top', '620px');
+        }, 700);
+        setTimeout(function () {
+            $('#enemy').css('top', '20px');
+        }, 1300);
+    }
+    function itemLeave() { //物件離場
+        $('#deathcount').css('top', '-10%');
+        $('#skull').css('top', '-20%');
+        $('#distance').css('top', '-20%');
+        $('#healthBar').css('top', '-17%');
+        $('#sword').css('left', '-50%');
+        $('#dagger').css('left', '-50%');
+        $('#powerfulhit').css('left', '-50%');
+        $('#moredices').css('left', '-50%');
+        $('#plus1').css('right', '-100%');
+        $('#reroll').css('right', '-100%');
+        $('#recharge').css('right', '-100%');
+        $('#twelvesides').css('right', '-100%');
+        $('#gaindice1').css('right', '-100%');
+        $('#wildstrike').css('right', '-100%');
+        $('#cutinto2').css('right', '-100%');
+        $('#invest').css('right', '-100%');
+        $('#roll').css('bottom', '-50%');
+        $('#end').css('bottom', '-60%');
+        $('#champ').css('top', '1500px');
+        $('#enemy').css('top', '-500px');
+    }
+    function start() {  //遊戲開始
+        enter_stage.play();
+        $('#title').css('display', 'none');
+        $('#frame').css('background', 'linear-gradient(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.2)), url(image/background_02.jpg) no-repeat 0% 20%/ cover');
+        itemEnter();
+    }
+    function choose_weapon() {
+        $('#title').css('display', 'none');
+        $('.choiceFrame').css('display', 'flex');
+    }
+    function sword_chosen() {
+        $('#sword').css('display', 'block');
+        $('#powerfulhit').css('display', 'block');
+        reward_first();
+    }
+    function dagger_chosen() {
+        $('#dagger').css('display', 'block');
+        $('#moredices').css('display', 'block');
+        reward_first();
+    }
+    function dice1appear() {
+        $('#diceone').css('visibility', 'visible'); //讓骰子圖案出現
+        $('#dice1').css('bottom', '155px');  //骰子出現的位置變化 動畫表現
+    }
+    function dice1hide() {
+        $('#diceone').css('visibility', 'hidden');  //讓骰子消失
+        $('#dice1').css('bottom', '-100px');  //位置回到最底 準備下一次出場動畫
+    }
+    function dice2appear() {
+        $('#dicetwo').css('visibility', 'visible');
+        $('#dice2').css('bottom', '155px');
+    }
+    function dice2hide() {
+        $('#dicetwo').css('visibility', 'hidden');
+        $('#dice2').css('bottom', '-100px');
+    }
+    function dice3appear() {
+        $('#dicethree').css('visibility', 'visible');
+        $('#dice3').css('bottom', '155px');
+    }
+    function dice3hide() {
+        $('#dicethree').css('visibility', 'hidden');
+        $('#dice3').css('bottom', '-100px');
+    }
+    function dice4appear() {
+        $('#dicefour').css('visibility', 'visible');
+        $('#dice4').css('bottom', '155px');
+    }
+    function dice4hide() {
+        $('#dicefour').css('visibility', 'hidden');
+        $('#dice4').css('bottom', '-100px');
+    }
+    function dice5appear() {
+        $('#dicefive').css('visibility', 'visible');
+        $('#dice5').css('bottom', '65px');
+    }
+    function dice5hide() {
+        $('#dicefive').css('visibility', 'hidden');
+        $('#dice5').css('bottom', '-100px');
+    }
+    function dice6appear() {
+        $('#dicesix').css('visibility', 'visible');
+        $('#dice6').css('bottom', '65px');
+    }
+    function dice6hide() {
+        $('#dicesix').css('visibility', 'hidden');
+        $('#dice6').css('bottom', '-100px');
+    }
+    function dice7appear() {
+        $('#diceseven').css('visibility', 'visible');
+        $('#dice7').css('bottom', '65px');
+    }
+    function dice7hide() {
+        $('#diceseven').css('visibility', 'hidden');
+        $('#dice7').css('bottom', '-100px');
+    }
+    function dice8appear() {
+        $('#diceeight').css('visibility', 'visible');
+        $('#dice8').css('bottom', '65px');
+    }
+    function dice8hide() {
+        $('#diceeight').css('visibility', 'hidden');
+        $('#dice8').css('bottom', '-100px');
+    }
+    function ROLLtwelve(X) {  //擲骰函式 12面骰       
+        roll_sound.play();
+        dice1appear();
+        switch (X) {
+            case 1:
+                document.getElementById("diceone").src = 'image/12sides1.png';
+                $('#dice1').prop('data-value', 1);
+                break;
+            case 2:
+                document.getElementById("diceone").src = 'image/12sides2.png';
+                $('#dice1').prop('data-value', 2);
+                break;
+            case 3:
+                document.getElementById("diceone").src = 'image/12sides3.png';
+                $('#dice1').prop('data-value', 3);
+                break;
+            case 4:
+                document.getElementById("diceone").src = 'image/12sides4.png';
+                $('#dice1').prop('data-value', 4);
+                break;
+            case 5:
+                document.getElementById("diceone").src = 'image/12sides5.png';
+                $('#dice1').prop('data-value', 5);
+                break;
+            case 6:
+                document.getElementById("diceone").src = 'image/12sides6.png';
+                $('#dice1').prop('data-value', 6);
+                break;
+            case 7:
+                document.getElementById("diceone").src = 'image/12sides7.png';
+                $('#dice1').prop('data-value', 7);
+                break;
+            case 8:
+                document.getElementById("diceone").src = 'image/12sides8.png';
+                $('#dice1').prop('data-value', 8);
+                break;
+            case 9:
+                document.getElementById("diceone").src = 'image/12sides9.png';
+                $('#dice1').prop('data-value', 9);
+                break;
+            case 10:
+                document.getElementById("diceone").src = 'image/12sides10.png';
+                $('#dice1').prop('data-value', 10);
+                break;
+            case 11:
+                document.getElementById("diceone").src = 'image/12sides11.png';
+                $('#dice1').prop('data-value', 11);
+                break;
+            case 12:
+                document.getElementById("diceone").src = 'image/12sides12.png';
+                $('#dice1').prop('data-value', 12);
+                break;
+        }
+    }
+    function ROLL1(X) {  //擲骰函式 第一顆       
+        roll_sound.play();
+        dice1appear();
+        switch (X) {
+            case 1:
+                document.getElementById("diceone").src = 'image/dice1.png';
+                $('#dice1').prop('data-value', 1);
+                break;
+            case 2:
+                document.getElementById("diceone").src = 'image/dice2.png';
+                $('#dice1').prop('data-value', 2);
+                break;
+            case 3:
+                document.getElementById("diceone").src = 'image/dice3.png';
+                $('#dice1').prop('data-value', 3);
+                break;
+            case 4:
+                document.getElementById("diceone").src = 'image/dice4.png';
+                $('#dice1').prop('data-value', 4);
+                break;
+            case 5:
+                document.getElementById("diceone").src = 'image/dice5.png';
+                $('#dice1').prop('data-value', 5);
+                break;
+            case 6:
+                document.getElementById("diceone").src = 'image/dice6.png';
+                $('#dice1').prop('data-value', 6);
+                break;
+        }
+    }
+    function ROLL2(X) {  //擲骰函式 第二顆
+        roll_sound.play();
+        dice2appear();
+        switch (X) {
+            case 1:
+                document.getElementById("dicetwo").src = 'image/dice1.png';
+                $('#dice2').prop('data-value', 1);
+                break;
+            case 2:
+                document.getElementById("dicetwo").src = 'image/dice2.png';
+                $('#dice2').prop('data-value', 2);
+                break;
+            case 3:
+                document.getElementById("dicetwo").src = 'image/dice3.png';
+                $('#dice2').prop('data-value', 3);
+                break;
+            case 4:
+                document.getElementById("dicetwo").src = 'image/dice4.png';
+                $('#dice2').prop('data-value', 4);
+                break;
+            case 5:
+                document.getElementById("dicetwo").src = 'image/dice5.png';
+                $('#dice2').prop('data-value', 5);
+                break;
+            case 6:
+                document.getElementById("dicetwo").src = 'image/dice6.png';
+                $('#dice2').prop('data-value', 6);
+                break;
+        }
+    }
+    function ROLL3(X) {  //擲骰函式 第三顆
+        roll_sound.play();
+        dice3appear();
+        switch (X) {
+            case 1:
+                document.getElementById("dicethree").src = 'image/dice1.png';
+                $('#dice3').prop('data-value', 1);
+                break;
+            case 2:
+                document.getElementById("dicethree").src = 'image/dice2.png';
+                $('#dice3').prop('data-value', 2);
+                break;
+            case 3:
+                document.getElementById("dicethree").src = 'image/dice3.png';
+                $('#dice3').prop('data-value', 3);
+                break;
+            case 4:
+                document.getElementById("dicethree").src = 'image/dice4.png';
+                $('#dice3').prop('data-value', 4);
+                break;
+            case 5:
+                document.getElementById("dicethree").src = 'image/dice5.png';
+                $('#dice3').prop('data-value', 5);
+                break;
+            case 6:
+                document.getElementById("dicethree").src = 'image/dice6.png';
+                $('#dice3').prop('data-value', 6);
+                break;
+        }
+    }
+    function ROLL4(X) {  //擲骰函式 第四顆
+        roll_sound.play();
+        dice4appear();
+        switch (X) {
+            case 1:
+                document.getElementById("dicefour").src = 'image/dice1.png';
+                $('#dice4').prop('data-value', 1);
+                break;
+            case 2:
+                document.getElementById("dicefour").src = 'image/dice2.png';
+                $('#dice4').prop('data-value', 2);
+                break;
+            case 3:
+                document.getElementById("dicefour").src = 'image/dice3.png';
+                $('#dice4').prop('data-value', 3);
+                break;
+            case 4:
+                document.getElementById("dicefour").src = 'image/dice4.png';
+                $('#dice4').prop('data-value', 4);
+                break;
+            case 5:
+                document.getElementById("dicefour").src = 'image/dice5.png';
+                $('#dice4').prop('data-value', 5);
+                break;
+            case 6:
+                document.getElementById("dicefour").src = 'image/dice6.png';
+                $('#dice4').prop('data-value', 6);
+                break;
+        }
+    }
+    function ROLL5(X) {
+        roll_sound.play();
+        dice5appear();
+        switch (X) {
+            case 1:
+                document.getElementById("dicefive").src = 'image/dice1.png';
+                $('#dice5').prop('data-value', 1);
+                break;
+            case 2:
+                document.getElementById("dicefive").src = 'image/dice2.png';
+                $('#dice5').prop('data-value', 2);
+                break;
+            case 3:
+                document.getElementById("dicefive").src = 'image/dice3.png';
+                $('#dice5').prop('data-value', 3);
+                break;
+            case 4:
+                document.getElementById("dicefive").src = 'image/dice4.png';
+                $('#dice5').prop('data-value', 4);
+                break;
+            case 5:
+                document.getElementById("dicefive").src = 'image/dice5.png';
+                $('#dice5').prop('data-value', 5);
+                break;
+            case 6:
+                document.getElementById("dicefive").src = 'image/dice6.png';
+                $('#dice5').prop('data-value', 6);
+                break;
+        }
+    }
+    function ROLL6(X) {
+        roll_sound.play();
+        dice6appear();
+        switch (X) {
+            case 1:
+                document.getElementById("dicesix").src = 'image/dice1.png';
+                $('#dice6').prop('data-value', 1);
+                break;
+            case 2:
+                document.getElementById("dicesix").src = 'image/dice2.png';
+                $('#dice6').prop('data-value', 2);
+                break;
+            case 3:
+                document.getElementById("dicesix").src = 'image/dice3.png';
+                $('#dice6').prop('data-value', 3);
+                break;
+            case 4:
+                document.getElementById("dicesix").src = 'image/dice4.png';
+                $('#dice6').prop('data-value', 4);
+                break;
+            case 5:
+                document.getElementById("dicesix").src = 'image/dice5.png';
+                $('#dice6').prop('data-value', 5);
+                break;
+            case 6:
+                document.getElementById("dicesix").src = 'image/dice6.png';
+                $('#dice6').prop('data-value', 6);
+                break;
+        }
+    }
+    function ROLL7(X) {
+        roll_sound.play();
+        dice7appear();
+        switch (X) {
+            case 1:
+                document.getElementById("diceseven").src = 'image/dice1.png';
+                $('#dice7').prop('data-value', 1);
+                break;
+            case 2:
+                document.getElementById("diceseven").src = 'image/dice2.png';
+                $('#dice7').prop('data-value', 2);
+                break;
+            case 3:
+                document.getElementById("diceseven").src = 'image/dice3.png';
+                $('#dice7').prop('data-value', 3);
+                break;
+            case 4:
+                document.getElementById("diceseven").src = 'image/dice4.png';
+                $('#dice7').prop('data-value', 4);
+                break;
+            case 5:
+                document.getElementById("diceseven").src = 'image/dice5.png';
+                $('#dice7').prop('data-value', 5);
+                break;
+            case 6:
+                document.getElementById("diceseven").src = 'image/dice6.png';
+                $('#dice7').prop('data-value', 6);
+                break;
+        }
+    }
+    function ROLL8(X) {
+        roll_sound.play();
+        dice8appear();
+        switch (X) {
+            case 1:
+                document.getElementById("diceeight").src = 'image/dice1.png';
+                $('#dice8').prop('data-value', 1);
+                break;
+            case 2:
+                document.getElementById("diceeight").src = 'image/dice2.png';
+                $('#dice8').prop('data-value', 2);
+                break;
+            case 3:
+                document.getElementById("diceeight").src = 'image/dice3.png';
+                $('#dice8').prop('data-value', 3);
+                break;
+            case 4:
+                document.getElementById("diceeight").src = 'image/dice4.png';
+                $('#dice8').prop('data-value', 4);
+                break;
+            case 5:
+                document.getElementById("diceeight").src = 'image/dice5.png';
+                $('#dice8').prop('data-value', 5);
+                break;
+            case 6:
+                document.getElementById("diceeight").src = 'image/dice6.png';
+                $('#dice8').prop('data-value', 6);
+                break;
+        }
+    }
+    roll.onclick = function () {
+        if (roll.value == "unused") {  //判斷是否ROLL過
+            if ($('#sword').css('display') == 'block') {  //判斷當前使用的是哪一個武器
+                if ($('#twelvesides').prop('data-value') == 'triggered') {  //判斷是否發動被動技能
+                    if ($('#gaindice1').prop('data-value') == 'triggered') {
+                        ROLLtwelve(Math.floor(Math.random() * 12) + 1);
+                        ROLL2(Math.floor(Math.random() * 6) + 1);
+                    } else { ROLLtwelve(Math.floor(Math.random() * 12) + 1); }
+                } else if ($('#gaindice1').prop('data-value') == 'triggered') {
+                    ROLL1(Math.floor(Math.random() * 6) + 1);
+                    ROLL2(Math.floor(Math.random() * 6) + 1);
+                    ROLL3(Math.floor(Math.random() * 6) + 1);
+                } else {
+                    ROLL1(Math.floor(Math.random() * 6) + 1);
+                    ROLL2(Math.floor(Math.random() * 6) + 1);
+                }
+            } else if ($('#dagger').css('display') == 'block') {
+                if ($('#gaindice1').prop('data-value') == 'triggered') {
+                    if ($('#invest').prop('data-value') == 'triggered') {
+                        ROLL1(Math.floor(Math.random() * 2) + 1);
+                        ROLL2(Math.floor(Math.random() * 2) + 1);
+                        ROLL3(Math.floor(Math.random() * 6) + 1);
+                        ROLL4(Math.floor(Math.random() * 6) + 1);
+                        $('#invest').prop('data-value', 'unused');
+                        $('#invest').css('opacity', 1);
+                    } else {
+                        ROLL1(Math.floor(Math.random() * 6) + 1);
+                        ROLL2(Math.floor(Math.random() * 6) + 1);
+                        ROLL3(Math.floor(Math.random() * 6) + 1);
+                        ROLL4(Math.floor(Math.random() * 6) + 1);
+                    }
+                } else if ($('#invest').prop('data-value') == 'triggered') {
+                    ROLL1(Math.floor(Math.random() * 2) + 1);
+                    ROLL2(Math.floor(Math.random() * 2) + 1);
+                    ROLL3(Math.floor(Math.random() * 6) + 1);
+                    $('#invest').prop('data-value', 'unused');
+                    $('#invest').css('opacity', 1);
+                } else {
+                    ROLL1(Math.floor(Math.random() * 6) + 1);
+                    ROLL2(Math.floor(Math.random() * 6) + 1);
+                    ROLL3(Math.floor(Math.random() * 6) + 1);
+                }
+            }
+            $('#champ').css('transition', 'top 0.2s ease-in');
+            roll.value = "used";  //控制一回合只能ROLL一次
+        }
+    }
+    dice1.ondrag = function () {
+        $('#diceone').prop('data-value', 'dragging'); //設定骰子是被drop還是dragend，決定骰子visible還是hidden
+        dice1hide(); //開始drag後讓原地的骰子消失
+    }
+    dice1.ondragend = function () {
+        if ($('#diceone').prop('data-value') == 'dragging') {   //讀取骰子是被drop還是dragend，決定骰子visible還是hidden
+            dice1appear();  //dragend後讓骰子再度出現
+        }
+    }
+    dice2.ondrag = function () {
+        $('#dicetwo').prop('data-value', 'dragging'); //設定骰子是被drop還是dragend，決定骰子visible還是hidden
+        dice2hide();
+    }
+    dice2.ondragend = function () {
+        if ($('#dicetwo').prop('data-value') == 'dragging') {  //讀取骰子是被drop還是dragend，決定骰子visible還是hidden
+            dice2appear();
+        }
+    }
+    dice3.ondrag = function () {
+        $('#dicethree').prop('data-value', 'dragging'); //設定骰子是被drop還是dragend，決定骰子visible還是hidden
+        dice3hide();
+    }
+    dice3.ondragend = function () {
+        if ($('#dicethree').prop('data-value') == 'dragging') {  //讀取骰子是被drop還是dragend，決定骰子visible還是hidden
+            dice3appear();
+        }
+    }
+    dice4.ondrag = function () {
+        $('#dicefour').prop('data-value', 'dragging'); //設定骰子是被drop還是dragend，決定骰子visible還是hidden
+        dice4hide();
+    }
+    dice4.ondragend = function () {
+        if ($('#dicefour').prop('data-value') == 'dragging') {  //讀取骰子是被drop還是dragend，決定骰子visible還是hidden
+            dice4appear();
+        }
+    }
+    dice5.ondrag = function () {
+        $('#dicefive').prop('data-value', 'dragging');
+        dice5hide();
+    }
+    dice5.ondragend = function () {
+        if ($('#dicefive').prop('data-value') == 'dragging') {
+            dice5appear();
+        }
+    }
+    dice6.ondrag = function () {
+        $('#dicesix').prop('data-value', 'dragging');
+        dice6hide();
+    }
+    dice6.ondragend = function () {
+        if ($('#dicesix').prop('data-value') == 'dragging') {
+            dice6appear();
+        }
+    }
+    dice7.ondrag = function () {
+        $('#diceseven').prop('data-value', 'dragging');
+        dice7hide();
+    }
+    dice7.ondragend = function () {
+        if ($('#diceseven').prop('data-value') == 'dragging') {
+            dice7appear();
+        }
+    }
+    dice8.ondrag = function () {
+        $('#diceeight').prop('data-value', 'dragging');
+        dice8hide();
+    }
+    dice8.ondragend = function () {
+        if ($('#diceeight').prop('data-value') == 'dragging') {
+            dice8appear();
+        }
+    }
+    function dragStart(event) {
+        $('#end').prop('value', event.target.id); //獲得當前drag的是哪一個骰子 先存在end按鈕的value
+        $('#hit_effect').attr('src', ''); //重置打擊特效
+        $('#hit_effect').css('opacity', 1);
+        $('#hit_effect').css('visibility', 'hidden');
+        damagetoHealth.innerText = '';
+        $('#damagetoHealth').css('opacity', 1);
+    }
+    function Enterweapon() {
+        event.target.style.transform = 'scale(1.5,1.5)'; //dragEnter時放大武器圖片
+    }
+    function Enterskill() {
+        event.target.style.transform = 'scale(1.2,1.2)'; //dragEnter時放大技能圖片
+    }
+    function dragLeave() {
+        event.target.style.transform = 'scale(1,1)'; //dragLeave時武器、技能圖片大小恢復
+    }
+    function allowDrop(event) {
+        event.preventDefault();
+    }
+    // function anime() {   //jquery動畫方法 現在不用
+    //     $('#dice1').animate({ bottom: '150px'}, 'fast');
+    //     $('#diceone').css('visibility', 'visible');
+    // }
+    powerfulhit.onclick = function () {  //長劍絕招 下次攻擊傷害*2
+        var X = $('#powerfulhit').prop('data-value');
+        if (X == 'charged') {   //再次點擊取消技能
+            $('#powerfulhit').prop('data-value', 'unused');
+            $('#powerfulhit').css('opacity', '1');
+        }
+        else if (X != 'charged' && X != 'used') {   //控制一場戰鬥只能使用一次
+            $('#powerfulhit').prop('data-value', 'charged');
+            $('#powerfulhit').css('opacity', '0.5');
+        }
+    }
+    moredices.onclick = function () {
+        if ($('#moredices').prop('data-value') != 'used') {
+            for (x = 1; x <= 3; x += 1) {
+                if ($('#diceone').css('visibility') == 'hidden') {
+                    ROLL1(Math.floor(Math.random() * 3) + 1);
+                } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                    ROLL2(Math.floor(Math.random() * 3) + 1);
+                } else if ($('#dicethree').css('visibility') == 'hidden') {
+                    ROLL3(Math.floor(Math.random() * 3) + 1);
+                } else if ($('#dicefour').css('visibility') == 'hidden') {
+                    ROLL4(Math.floor(Math.random() * 3) + 1);
+                } else if ($('#dicefive').css('visibility') == 'hidden') {
+                    ROLL5(Math.floor(Math.random() * 3) + 1);
+                } else if ($('#dicesix').css('visibility') == 'hidden') {
+                    ROLL6(Math.floor(Math.random() * 3) + 1);
+                } else if ($('#diceseven').css('visibility') == 'hidden') {
+                    ROLL7(Math.floor(Math.random() * 3) + 1);
+                } else if ($('#diceeight').css('visibility') == 'hidden') {
+                    ROLL8(Math.floor(Math.random() * 3) + 1);
+                }
+            }
+            $('#moredices').prop('data-value', 'used');
+            $('#moredices').css('opacity', '0.5');
+        }
+    }
+    function plus1() {  //主動技能 drop後骰子點數+1
+        var X = $('#end').prop('value');
+        event.target.style.transform = 'scale(1,1)';
+        function refreshthis() {
+            $('#plus1').prop('data-value', 'used');
+            $('#plus1').css('opacity', '0.5');
+        }
+        if ($('#plus1').prop('data-value') != 'used') {
+            //判斷是否有發動技能
+            switch (X) {
+                case 'diceone':
+                    if ($('#twelvesides').prop('data-value') == 'triggered') {
+                        if ($('#dice1').prop('data-value') != 12) {
+                            ROLLtwelve($('#dice1').prop('data-value') + 1);
+                        } else if ($('#dice1').prop('data-value') == 12) {
+                            if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(1);
+                            } else if ($('#dicetwo').css('visibility') == 'visible') {
+                                ROLL3(1);
+                            }
+                        }
+                    } else {
+                        if ($('#dice1').prop('data-value') != 6) {
+                            ROLL1($('#dice1').prop('data-value') + 1);
+                        } else if ($('#dice1').prop('data-value') == 6) {
+                            if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(1);
+                            } else if ($('#dicetwo').css('visibility') == 'visible' && $('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(1);
+                            } else if ($('#dicethree').css('visibility') == 'visible' && $('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(1);
+                            }
+                        }
+                    }
+                    refreshthis();
+                    break;
+                case 'dicetwo':
+                    if ($('#dice2').prop('data-value') != 6) {
+                        ROLL2($('#dice2').prop('data-value') + 1);
+                    } else if ($('#dice2').prop('data-value') == 6) {
+                        if ($('#diceone').css('visibility') == 'hidden') {
+                            ROLL1(1);
+                        } else if ($('#diceone').css('visibility') == 'visible' && $('#dicethree').css('visibility') == 'hidden') {
+                            ROLL3(1);
+                        } else if ($('#dicethree').css('visibility') == 'visible' && $('#dicefour').css('visibility') == 'hidden') {
+                            ROLL4(1);
+                        }
+                    }
+                    refreshthis();
+                    break;
+                case 'dicethree':
+                    if ($('#dice3').prop('data-value') != 6) {
+                        ROLL3($('#dice3').prop('data-value') + 1);
+                    } else if ($('#dice3').prop('data-value') == 6) {
+                        if ($('#diceone').css('visibility') == 'hidden') {
+                            ROLL1(1);
+                        } else if ($('#diceone').css('visibility') == 'visible' && $('#dicetwo').css('visibility') == 'hidden') {
+                            ROLL3(1);
+                        } else if ($('#dicetwo').css('visibility') == 'visible' && $('#dicefour').css('visibility') == 'hidden') {
+                            ROLL4(1);
+                        }
+                    }
+                    refreshthis();
+                    break;
+                case 'dicefour':
+                    if ($('#dice4').prop('data-value') != 6) {
+                        ROLL4($('#dice4').prop('data-value') + 1);
+                    } else if ($('#dice4').prop('data-value') == 6) {
+                        if ($('#diceone').css('visibility') == 'hidden') {
+                            ROLL1(1);
+                        } else if ($('#diceone').css('visibility') == 'visible' && $('#dicetwo').css('visibility') == 'hidden') {
+                            ROLL2(1);
+                        } else if ($('#dicetwo').css('visibility') == 'visible' && $('#dicethree').css('visibility') == 'hidden') {
+                            ROLL3(1);
+                        }
+                    }
+                    refreshthis();
+                    break;
+            }
+        }
+    }
+    function reroll() { //主動技能 重骰一顆骰子，一回合可使用三次
+        event.target.style.transform = 'scale(1,1)';
+        var X = $('#reroll').prop('data-value');
+        var Y = $('#end').prop('value');
+        if ($('#twelvesides').prop('data-value') == 'triggered') {
+            if (X == 'dropped2') {
+                switch (Y) {
+                    case 'diceone':
+                        ROLLtwelve(Math.floor(Math.random() * 12) + 1);
+                        break;
+                    case 'dicetwo':
+                        ROLL2(Math.floor(Math.random() * 6) + 1);
+                        break;
+                    case 'dicethree':
+                        ROLL3(Math.floor(Math.random() * 6) + 1);
+                        break;
+                    case 'dicefour':
+                        ROLL4(Math.floor(Math.random() * 6) + 1);
+                        break;
+                }
+                $('#reroll').prop('data-value', 'used');
+                $('#reroll').css('opacity', 0.5);
+            } else if (X == 'dropped1') {
+                switch (Y) {
+                    case 'diceone':
+                        ROLLtwelve(Math.floor(Math.random() * 12) + 1);
+                        break;
+                    case 'dicetwo':
+                        ROLL2(Math.floor(Math.random() * 6) + 1);
+                        break;
+                    case 'dicethree':
+                        ROLL3(Math.floor(Math.random() * 6) + 1);
+                        break;
+                    case 'dicefour':
+                        ROLL4(Math.floor(Math.random() * 6) + 1);
+                        break;
+                }
+                $('#reroll').prop('data-value', 'dropped2');
+            } else if (X != "used") {
+                switch (Y) {
+                    case 'diceone':
+                        ROLLtwelve(Math.floor(Math.random() * 12) + 1);
+                        break;
+                    case 'dicetwo':
+                        ROLL2(Math.floor(Math.random() * 6) + 1);
+                        break;
+                    case 'dicethree':
+                        ROLL3(Math.floor(Math.random() * 6) + 1);
+                        break;
+                    case 'dicefour':
+                        ROLL4(Math.floor(Math.random() * 6) + 1);
+                        break;
+                }
+                $('#reroll').prop('data-value', 'dropped1');
+            }
+        } else {
+            if (X == 'dropped2') {
+                switch (Y) {
+                    case 'diceone':
+                        ROLL1(Math.floor(Math.random() * 6) + 1);
+                        break;
+                    case 'dicetwo':
+                        ROLL2(Math.floor(Math.random() * 6) + 1);
+                        break;
+                    case 'dicethree':
+                        ROLL3(Math.floor(Math.random() * 6) + 1);
+                        break;
+                    case 'dicefour':
+                        ROLL4(Math.floor(Math.random() * 6) + 1);
+                        break;
+                    case 'dicefive':
+                        ROLL5(Math.floor(Math.random() * 6) + 1);
+                        break;
+                    case 'dicesix':
+                        ROLL6(Math.floor(Math.random() * 6) + 1);
+                        break;
+                    case 'diceseven':
+                        ROLL7(Math.floor(Math.random() * 6) + 1);
+                        break;
+                    case 'diceeight':
+                        ROLL8(Math.floor(Math.random() * 6) + 1);
+                        break;
+                }
+                $('#reroll').prop('data-value', 'used');
+                $('#reroll').css('opacity', 0.5);
+            } else if (X == 'dropped1') {
+                switch (Y) {
+                    case 'diceone':
+                        ROLL1(Math.floor(Math.random() * 6) + 1);
+                        break;
+                    case 'dicetwo':
+                        ROLL2(Math.floor(Math.random() * 6) + 1);
+                        break;
+                    case 'dicethree':
+                        ROLL3(Math.floor(Math.random() * 6) + 1);
+                        break;
+                    case 'dicefour':
+                        ROLL4(Math.floor(Math.random() * 6) + 1);
+                        break;
+                    case 'dicefive':
+                        ROLL5(Math.floor(Math.random() * 6) + 1);
+                        break;
+                    case 'dicesix':
+                        ROLL6(Math.floor(Math.random() * 6) + 1);
+                        break;
+                    case 'diceseven':
+                        ROLL7(Math.floor(Math.random() * 6) + 1);
+                        break;
+                    case 'diceeight':
+                        ROLL8(Math.floor(Math.random() * 6) + 1);
+                        break;
+                }
+                $('#reroll').prop('data-value', 'dropped2');
+            } else if (X != "used") {
+                switch (Y) {
+                    case 'diceone':
+                        ROLL1(Math.floor(Math.random() * 6) + 1);
+                        break;
+                    case 'dicetwo':
+                        ROLL2(Math.floor(Math.random() * 6) + 1);
+                        break;
+                    case 'dicethree':
+                        ROLL3(Math.floor(Math.random() * 6) + 1);
+                        break;
+                    case 'dicefour':
+                        ROLL4(Math.floor(Math.random() * 6) + 1);
+                        break;
+                    case 'dicefive':
+                        ROLL5(Math.floor(Math.random() * 6) + 1);
+                        break;
+                    case 'dicesix':
+                        ROLL6(Math.floor(Math.random() * 6) + 1);
+                        break;
+                    case 'diceseven':
+                        ROLL7(Math.floor(Math.random() * 6) + 1);
+                        break;
+                    case 'diceeight':
+                        ROLL8(Math.floor(Math.random() * 6) + 1);
+                        break;
+                }
+                $('#reroll').prop('data-value', 'dropped1');
+            }
+        }
+    }
+    function charge() {
+        $('#powerfulhit').prop('data-value', 'unused');  //恢復絕招為unused
+        $('#powerfulhit').css('opacity', 1);
+        $('#moredices').prop('data-value', 'unused');
+        $('#moredices').css('opacity', 1);
+        $('#recharge').prop('data-value', 'used');
+        $('#recharge').css('opacity', 0.5);
+    }
+    function recharge() {  //主動技能 drop兩顆點數相同骰子後將絕招重新充能，並造成點數傷害
+        event.target.style.transform = 'scale(1,1)';
+        var X = $('#recharge').prop('data-value');
+        var Y = $('#end').prop('value');
+        var Z = $('#roll').prop('data-value');
+        var one = $('#dice1').prop('data-value');
+        var two = $('#dice2').prop('data-value');
+        var three = $('#dice3').prop('data-value');
+        var four = $('#dice4').prop('data-value');
+        var five = $('#dice5').prop('data-value');
+        var six = $('#dice6').prop('data-value');
+        var seven = $('#dice7').prop('data-value');
+        var eight = $('#dice8').prop('data-value');
+        if (X >= 1 && X <= 12) {  //drop第二顆骰子，判斷X是否已被設定另一顆骰子點數及是否相等
+            switch (Y) {
+                case 'diceone':
+                    if (X == one) {
+                        charge();
+                        $('#diceone').prop('data-value', 'dropped');
+                        enemyHealth.innerText -= $('#dice1').prop('data-value');
+                        damagetoHealth.innerText = `-${$('#dice1').prop('data-value')}`;
+                        attack();
+                    } else {  //兩顆骰子點數不相同的情形，骰子恢復，技能恢復為unused
+                        dice1appear();
+                        switch (Z) {
+                            case 'dicetwo':
+                                dice2appear();
+                                break;
+                            case 'dicethree':
+                                dice3appear();
+                                break;
+                            case 'dicefour':
+                                dice4appear();
+                                break;
+                            case 'dicefive':
+                                dice5appear();
+                                break;
+                            case 'dicesix':
+                                dice6appear();
+                                break;
+                            case 'diceseven':
+                                dice7appear();
+                                break;
+                            case 'diceeight':
+                                dice8appear();
+                                break;
+                        }
+                        $('#recharge').prop('data-value', 'unused');
+                    }
+                    break;
+                case 'dicetwo':
+                    if (X == two) {
+                        charge();
+                        $('#dicetwo').prop('data-value', 'dropped');
+                        enemyHealth.innerText -= $('#dice2').prop('data-value');
+                        damagetoHealth.innerText = `-${$('#dice2').prop('data-value')}`;
+                        attack();
+                    } else {  //兩顆骰子點數不相同的情形，骰子恢復，技能恢復為unused
+                        dice2appear();
+                        switch (Z) {
+                            case 'diceone':
+                                dice1appear();
+                                break;
+                            case 'dicethree':
+                                dice3appear();
+                                break;
+                            case 'dicefour':
+                                dice4appear();
+                                break;
+                            case 'dicefive':
+                                dice5appear();
+                                break;
+                            case 'dicesix':
+                                dice6appear();
+                                break;
+                            case 'diceseven':
+                                dice7appear();
+                                break;
+                            case 'diceeight':
+                                dice8appear();
+                                break;
+                        }
+                        $('#recharge').prop('data-value', 'unused');
+                    }
+                    break;
+                case 'dicethree':
+                    if (X == three) {
+                        charge();
+                        $('#dicethree').prop('data-value', 'dropped');
+                        enemyHealth.innerText -= $('#dice3').prop('data-value');
+                        damagetoHealth.innerText = `-${$('#dice3').prop('data-value')}`;
+                        attack();
+                    } else {  //兩顆骰子點數不相同的情形，骰子恢復，技能恢復為unused
+                        dice3appear();
+                        switch (Z) {
+                            case 'dicetwo':
+                                dice2appear();
+                                break;
+                            case 'diceone':
+                                dice1appear();
+                                break;
+                            case 'dicefour':
+                                dice4appear();
+                                break;
+                            case 'dicefive':
+                                dice5appear();
+                                break;
+                            case 'dicesix':
+                                dice6appear();
+                                break;
+                            case 'diceseven':
+                                dice7appear();
+                                break;
+                            case 'diceeight':
+                                dice8appear();
+                                break;
+                        }
+                        $('#recharge').prop('data-value', 'unused');
+                    }
+                    break;
+                case 'dicefour':
+                    if (X == four) {
+                        charge();
+                        $('#dicefour').prop('data-value', 'dropped');
+                        enemyHealth.innerText -= $('#dice4').prop('data-value');
+                        damagetoHealth.innerText = `-${$('#dice4').prop('data-value')}`;
+                        attack();
+                    } else {  //兩顆骰子點數不相同的情形，骰子恢復，技能恢復為unused
+                        dice4appear();
+                        switch (Z) {
+                            case 'diceone':
+                                dice1appear();
+                                break;
+                            case 'dicethree':
+                                dice3appear();
+                                break;
+                            case 'dicetwo':
+                                dice2appear();
+                                break;
+                            case 'dicefive':
+                                dice5appear();
+                                break;
+                            case 'dicesix':
+                                dice6appear();
+                                break;
+                            case 'diceseven':
+                                dice7appear();
+                                break;
+                            case 'diceeight':
+                                dice8appear();
+                                break;
+                        }
+                        $('#recharge').prop('data-value', 'unused');
+                    }
+                    break;
+                case 'dicefive':
+                    if (X == five) {
+                        charge();
+                        $('#dicefive').prop('data-value', 'dropped');
+                        enemyHealth.innerText -= $('#dice5').prop('data-value');
+                        damagetoHealth.innerText = `-${$('#dice5').prop('data-value')}`;
+                        attack();
+                    } else {  //兩顆骰子點數不相同的情形，骰子恢復，技能恢復為unused
+                        dice5appear();
+                        switch (Z) {
+                            case 'diceone':
+                                dice1appear();
+                                break;
+                            case 'dicethree':
+                                dice3appear();
+                                break;
+                            case 'dicetwo':
+                                dice2appear();
+                                break;
+                            case 'dicefour':
+                                dice4appear();
+                                break;
+                            case 'dicesix':
+                                dice6appear();
+                                break;
+                            case 'diceseven':
+                                dice7appear();
+                                break;
+                            case 'diceeight':
+                                dice8appear();
+                                break;
+                        }
+                        $('#recharge').prop('data-value', 'unused');
+                    }
+                    break;
+                case 'dicesix':
+                    if (X == six) {
+                        charge();
+                        $('#dicesix').prop('data-value', 'dropped');
+                        enemyHealth.innerText -= $('#dice6').prop('data-value');
+                        damagetoHealth.innerText = `-${$('#dice6').prop('data-value')}`;
+                        attack();
+                    } else {  //兩顆骰子點數不相同的情形，骰子恢復，技能恢復為unused
+                        dice6appear();
+                        switch (Z) {
+                            case 'diceone':
+                                dice1appear();
+                                break;
+                            case 'dicethree':
+                                dice3appear();
+                                break;
+                            case 'dicetwo':
+                                dice2appear();
+                                break;
+                            case 'dicefour':
+                                dice4appear();
+                                break;
+                            case 'dicefive':
+                                dice5appear();
+                                break;
+                            case 'diceseven':
+                                dice7appear();
+                                break;
+                            case 'diceeight':
+                                dice8appear();
+                                break;
+                        }
+                        $('#recharge').prop('data-value', 'unused');
+                    }
+                    break;
+                case 'diceseven':
+                    if (X == seven) {
+                        charge();
+                        $('#diceseven').prop('data-value', 'dropped');
+                        enemyHealth.innerText -= $('#dice7').prop('data-value');
+                        damagetoHealth.innerText = `-${$('#dice7').prop('data-value')}`;
+                        attack();
+                    } else {  //兩顆骰子點數不相同的情形，骰子恢復，技能恢復為unused
+                        dice7appear();
+                        switch (Z) {
+                            case 'diceone':
+                                dice1appear();
+                                break;
+                            case 'dicethree':
+                                dice3appear();
+                                break;
+                            case 'dicetwo':
+                                dice2appear();
+                                break;
+                            case 'dicefour':
+                                dice4appear();
+                                break;
+                            case 'dicefive':
+                                dice5appear();
+                                break;
+                            case 'dicesix':
+                                dice6appear();
+                                break;
+                            case 'diceeight':
+                                dice8appear();
+                                break;
+                        }
+                        $('#recharge').prop('data-value', 'unused');
+                    }
+                    break;
+                case 'diceeight':
+                    if (X == eight) {
+                        charge();
+                        $('#diceeight').prop('data-value', 'dropped');
+                        enemyHealth.innerText -= $('#dice8').prop('data-value');
+                        damagetoHealth.innerText = `-${$('#dice8').prop('data-value')}`;
+                        attack();
+                    } else {  //兩顆骰子點數不相同的情形，骰子恢復，技能恢復為unused
+                        dice8appear();
+                        switch (Z) {
+                            case 'diceone':
+                                dice1appear();
+                                break;
+                            case 'dicethree':
+                                dice3appear();
+                                break;
+                            case 'dicetwo':
+                                dice2appear();
+                                break;
+                            case 'dicefour':
+                                dice4appear();
+                                break;
+                            case 'dicefive':
+                                dice5appear();
+                                break;
+                            case 'dicesix':
+                                dice6appear();
+                                break;
+                            case 'diceseven':
+                                dice7appear();
+                                break;
+                        }
+                        $('#recharge').prop('data-value', 'unused');
+                    }
+                    break;
+            }
+        } else if (X != 'used') {  //drop第一顆骰子
+            switch (Y) {
+                case 'diceone':
+                    $('#recharge').prop('data-value', one);  //將第一顆骰子的點數存入X
+                    $('#roll').prop('data-value', 'diceone'); //將第一顆drop哪顆骰子紀錄在Z
+                    $('#diceone').prop('data-value', 'dropped');
+                    break;
+                case 'dicetwo':
+                    $('#recharge').prop('data-value', two);  //將第一顆骰子的點數存入X
+                    $('#roll').prop('data-value', 'dicetwo');
+                    $('#dicetwo').prop('data-value', 'dropped');
+                    break;
+                case 'dicethree':
+                    $('#recharge').prop('data-value', three);  //將第一顆骰子的點數存入X
+                    $('#roll').prop('data-value', 'dicethree');
+                    $('#dicethree').prop('data-value', 'dropped');
+                    break;
+                case 'dicefour':
+                    $('#recharge').prop('data-value', four);  //將第一顆骰子的點數存入X
+                    $('#roll').prop('data-value', 'dicefour');
+                    $('#dicefour').prop('data-value', 'dropped');
+                    break;
+                case 'dicefive':
+                    $('#recharge').prop('data-value', five);  //將第一顆骰子的點數存入X
+                    $('#roll').prop('data-value', 'dicefive');
+                    $('#dicefive').prop('data-value', 'dropped');
+                    break;
+                case 'dicesix':
+                    $('#recharge').prop('data-value', six);  //將第一顆骰子的點數存入X
+                    $('#roll').prop('data-value', 'dicesix');
+                    $('#dicesix').prop('data-value', 'dropped');
+                    break;
+                case 'diceseven':
+                    $('#recharge').prop('data-value', seven);  //將第一顆骰子的點數存入X
+                    $('#roll').prop('data-value', 'diceseven');
+                    $('#diceseven').prop('data-value', 'dropped');
+                    break;
+                case 'diceeight':
+                    $('#recharge').prop('data-value', eight);  //將第一顆骰子的點數存入X
+                    $('#roll').prop('data-value', 'diceeight');
+                    $('#diceeight').prop('data-value', 'dropped');
+                    break;
+            }
+        }
+    }
+    function wildstrike() {  //主動技能 放入兩顆骰子造成隨機0-8點傷害
+        event.target.style.transform = 'scale(1,1)';
+        var X = $('#end').prop('value');
+        var Y = Math.floor(Math.random() * 9);
+        if ($('#wildstrike').prop('data-value') == 'dropped1') {
+            enemyHealth.innerText -= Y;
+            damagetoHealth.innerText = `-${Y}`;  //扣血數字動畫 
+            attack();
+            $('#wildstrike').prop('data-value', 'used');
+            $('#wildstrike').css('opacity', 0.5);
+            switch (X) {
+                case 'diceone':
+                    $('#diceone').prop('data-value', 'dropped');
+                    break;
+                case 'dicetwo':
+                    $('#dicetwo').prop('data-value', 'dropped');
+                    break;
+                case 'dicethree':
+                    $('#dicethree').prop('data-value', 'dropped');
+                    break;
+                case 'dicefour':
+                    $('#dicefour').prop('data-value', 'dropped');
+                    break;
+                case 'dicefive':
+                    $('#dicefive').prop('data-value', 'dropped');
+                    break;
+                case 'dicesix':
+                    $('#dicesix').prop('data-value', 'dropped');
+                    break;
+                case 'diceseven':
+                    $('#diceseven').prop('data-value', 'dropped');
+                    break;
+                case 'diceeight':
+                    $('#diceeight').prop('data-value', 'dropped');
+                    break;
+            }
+        } else if ($('#wildstrike').prop('data-value') !== 'used') {  //drop第一顆骰子
+            $('#wildstrike').prop('data-value', 'dropped1');
+            switch (X) {
+                case 'diceone':
+                    $('#diceone').prop('data-value', 'dropped');
+                    break;
+                case 'dicetwo':
+                    $('#dicetwo').prop('data-value', 'dropped');
+                    break;
+                case 'dicethree':
+                    $('#dicethree').prop('data-value', 'dropped');
+                    break;
+                case 'dicefour':
+                    $('#dicefour').prop('data-value', 'dropped');
+                    break;
+                case 'dicefive':
+                    $('#dicefive').prop('data-value', 'dropped');
+                    break;
+                case 'dicesix':
+                    $('#dicesix').prop('data-value', 'dropped');
+                    break;
+                case 'diceseven':
+                    $('#diceseven').prop('data-value', 'dropped');
+                    break;
+                case 'diceeight':
+                    $('#diceeight').prop('data-value', 'dropped');
+                    break;
+            }
+        }
+    }
+    function cutinto2() {  //主動技能 將一顆骰子拆成兩半
+        event.target.style.transform = 'scale(1,1)';
+        var X = $('#end').prop('value')
+        if ($('#cutinto2').prop('data-value') != 'used') {
+            switch (X) {
+                case 'diceone':
+                    switch ($('#dice1').prop('data-value')) {  //判斷骰子點數
+                        case 6:
+                            ROLL1(3);
+                            if ($('#dicetwo').css('visibility') == 'hidden') {  //新骰子出現在第一個有空位的骰子格子
+                                ROLL2(3);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(3);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(3);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(3);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(3);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(3);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(3);
+                            }
+                            break;
+                        case 5:
+                            ROLL1(3);
+                            if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(2);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(2);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(2);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(2);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(2);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(2);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(2);
+                            }
+                            break;
+                        case 4:
+                            ROLL1(2);
+                            if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(2);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(2);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(2);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(2);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(2);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(2);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(2);
+                            }
+                            break;
+                        case 3:
+                            ROLL1(2);
+                            if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(1);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(1);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(1);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(1);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(1);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(1);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(1);
+                            }
+                            break;
+                        case 2:
+                        case 1:
+                            ROLL1(1);
+                            if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(1);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(1);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(1);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(1);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(1);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(1);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(1);
+                            }
+                            break;
+                    }
+                    break;
+                case 'dicetwo':
+                    switch ($('#dice2').prop('data-value')) {
+                        case 6:
+                            ROLL2(3);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(3);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(3);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(3);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(3);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(3);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(3);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(3);
+                            }
+                            break;
+                        case 5:
+                            ROLL2(3);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(2);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(2);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(2);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(2);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(2);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(2);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(2);
+                            }
+                            break;
+                        case 4:
+                            ROLL2(2);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(2);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(2);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(2);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(2);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(2);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(2);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(2);
+                            }
+                            break;
+                        case 3:
+                            ROLL2(2);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(1);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(1);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(1);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(1);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(1);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(1);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(1);
+                            }
+                            break;
+                        case 2:
+                        case 1:
+                            ROLL2(1);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(1);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(1);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(1);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(1);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(1);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(1);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(1);
+                            }
+                            break;
+                    }
+                    break;
+                case 'dicethree':
+                    switch ($('#dice3').prop('data-value')) {
+                        case 6:
+                            ROLL3(3);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(3);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(3);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(3);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(3);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(3);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(3);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(3);
+                            }
+                            break;
+                        case 5:
+                            ROLL3(3);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(2);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(2);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(2);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(2);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(2);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(2);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(2);
+                            }
+                            break;
+                        case 4:
+                            ROLL3(2);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(2);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(2);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(2);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(2);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(2);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(2);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(2);
+                            }
+                            break;
+                        case 3:
+                            ROLL3(2);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(1);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(1);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(1);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(1);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(1);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(1);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(1);
+                            }
+                            break;
+                        case 2:
+                        case 1:
+                            ROLL3(1);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(1);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(1);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(1);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(1);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(1);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(1);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(1);
+                            }
+                            break;
+                    }
+                    break;
+                case 'dicefour':
+                    switch ($('#dice4').prop('data-value')) {
+                        case 6:
+                            ROLL4(3);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(3);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(3);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(3);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(3);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(3);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(3);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(3);
+                            }
+                            break;
+                        case 5:
+                            ROLL4(3);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(2);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(2);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(2);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(2);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(2);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(2);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(2);
+                            }
+                            break;
+                        case 4:
+                            ROLL4(2);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(2);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(2);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(2);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(2);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(2);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(2);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(2);
+                            }
+                            break;
+                        case 3:
+                            ROLL4(2);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(1);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(1);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(1);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(1);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(1);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(1);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(1);
+                            }
+                            break;
+                        case 2:
+                        case 1:
+                            ROLL4(1);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(1);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(1);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(1);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(1);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(1);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(1);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(1);
+                            }
+                            break;
+                    }
+                    break;
+                case 'dicefive':
+                    switch ($('#dice5').prop('data-value')) {
+                        case 6:
+                            ROLL5(3);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(3);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(3);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(3);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(3);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(3);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(3);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(3);
+                            }
+                            break;
+                        case 5:
+                            ROLL5(3);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(2);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(2);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(2);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(2);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(2);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(2);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(2);
+                            }
+                            break;
+                        case 4:
+                            ROLL5(2);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(2);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(2);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(2);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(2);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(2);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(2);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(2);
+                            }
+                            break;
+                        case 3:
+                            ROLL5(2);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(1);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(1);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(1);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(1);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(1);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(1);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(1);
+                            }
+                            break;
+                        case 2:
+                        case 1:
+                            ROLL5(1);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(1);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(1);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(1);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(1);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(1);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(1);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(1);
+                            }
+                            break;
+                    }
+                    break;
+                case 'dicesix':
+                    switch ($('#dice6').prop('data-value')) {
+                        case 6:
+                            ROLL6(3);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(3);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(3);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(3);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(3);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(3);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(3);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(3);
+                            }
+                            break;
+                        case 5:
+                            ROLL6(3);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(2);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(2);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(2);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(2);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(2);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(2);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(2);
+                            }
+                            break;
+                        case 4:
+                            ROLL6(2);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(2);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(2);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(2);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(2);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(2);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(2);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(2);
+                            }
+                            break;
+                        case 3:
+                            ROLL6(2);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(1);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(1);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(1);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(1);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(1);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(1);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(1);
+                            }
+                            break;
+                        case 2:
+                        case 1:
+                            ROLL6(1);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(1);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(1);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(1);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(1);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(1);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(1);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(1);
+                            }
+                            break;
+                    }
+                    break;
+                case 'diceseven':
+                    switch ($('#dice7').prop('data-value')) {
+                        case 6:
+                            ROLL7(3);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(3);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(3);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(3);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(3);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(3);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(3);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(3);
+                            }
+                            break;
+                        case 5:
+                            ROLL7(3);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(2);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(2);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(2);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(2);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(2);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(2);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(2);
+                            }
+                            break;
+                        case 4:
+                            ROLL7(2);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(2);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(2);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(2);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(2);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(2);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(2);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(2);
+                            }
+                            break;
+                        case 3:
+                            ROLL7(2);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(1);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(1);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(1);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(1);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(1);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(1);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(1);
+                            }
+                            break;
+                        case 2:
+                        case 1:
+                            ROLL7(1);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(1);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(1);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(1);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(1);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(1);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(1);
+                            } else if ($('#diceeight').css('visibility') == 'hidden') {
+                                ROLL8(1);
+                            }
+                            break;
+                    }
+                    break;
+                case 'diceeight':
+                    switch ($('#dice8').prop('data-value')) {
+                        case 6:
+                            ROLL8(3);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(3);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(3);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(3);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(3);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(3);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(3);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(3);
+                            }
+                            break;
+                        case 5:
+                            ROLL8(3);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(2);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(2);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(2);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(2);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(2);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(2);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(2);
+                            }
+                            break;
+                        case 4:
+                            ROLL8(2);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(2);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(2);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(2);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(2);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(2);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(2);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(2);
+                            }
+                            break;
+                        case 3:
+                            ROLL8(2);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(1);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(1);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(1);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(1);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(1);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(1);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(1);
+                            }
+                            break;
+                        case 2:
+                        case 1:
+                            ROLL8(1);
+                            if ($('#diceone').css('visibility') == 'hidden') {
+                                ROLL1(1);
+                            } else if ($('#dicetwo').css('visibility') == 'hidden') {
+                                ROLL2(1);
+                            } else if ($('#dicethree').css('visibility') == 'hidden') {
+                                ROLL3(1);
+                            } else if ($('#dicefour').css('visibility') == 'hidden') {
+                                ROLL4(1);
+                            } else if ($('#dicefive').css('visibility') == 'hidden') {
+                                ROLL5(1);
+                            } else if ($('#dicesix').css('visibility') == 'hidden') {
+                                ROLL6(1);
+                            } else if ($('#diceseven').css('visibility') == 'hidden') {
+                                ROLL7(1);
+                            }
+                            break;
+                    }
+                    break;
+            }
+            $('#cutinto2').prop('data-value', 'used');
+            $('#cutinto2').css('opacity', 0.5);
+        }
+    }
+    function invest() {
+        event.target.style.transform = 'scale(1,1)';
+        var X = $('#end').prop('value');
+        if ($('#invest').prop('data-value') == 'dropped1') {
+            switch (X) {
+                case 'diceone':
+                    if ($('#dice1').prop('data-value') % 2 == 0) {
+                        $('#diceone').prop('data-value', 'dropped');
+                        $('#invest').prop('data-value', 'triggered');
+                        $('#invest').css('opacity', 0.5);
+                    }
+                    break;
+                case 'dicetwo':
+                    if ($('#dice2').prop('data-value') % 2 == 0) {
+                        $('#dicetwo').prop('data-value', 'dropped');
+                        $('#invest').prop('data-value', 'triggered');
+                        $('#invest').css('opacity', 0.5);
+                    }
+                    break;
+                case 'dicethree':
+                    if ($('#dice3').prop('data-value') % 2 == 0) {
+                        $('#dicethree').prop('data-value', 'dropped');
+                        $('#invest').prop('data-value', 'triggered');
+                        $('#invest').css('opacity', 0.5);
+                    }
+                    break;
+                case 'dicefour':
+                    if ($('#dice4').prop('data-value') % 2 == 0) {
+                        $('#dicefour').prop('data-value', 'dropped');
+                        $('#invest').prop('data-value', 'triggered');
+                        $('#invest').css('opacity', 0.5);
+                    }
+                    break;
+                case 'dicefive':
+                    if ($('#dice5').prop('data-value') % 2 == 0) {
+                        $('#dicefive').prop('data-value', 'dropped');
+                        $('#invest').prop('data-value', 'triggered');
+                        $('#invest').css('opacity', 0.5);
+                    }
+                    break;
+                case 'dicesix':
+                    if ($('#dice6').prop('data-value') % 2 == 0) {
+                        $('#dicesix').prop('data-value', 'dropped');
+                        $('#invest').prop('data-value', 'triggered');
+                        $('#invest').css('opacity', 0.5);
+                    }
+                    break;
+                case 'diceseven':
+                    if ($('#dice7').prop('data-value') % 2 == 0) {
+                        $('#diceseven').prop('data-value', 'dropped');
+                        $('#invest').prop('data-value', 'triggered');
+                        $('#invest').css('opacity', 0.5);
+                    }
+                    break;
+                case 'diceeight':
+                    if ($('#dice8').prop('data-value') % 2 == 0) {
+                        $('#diceeight').prop('data-value', 'dropped');
+                        $('#invest').prop('data-value', 'triggered');
+                        $('#invest').css('opacity', 0.5);
+                    }
+                    break;
+            }
+        } else if ($('#invest').prop('data-value') != 'triggered') { //drop第一顆骰子
+            switch (X) {
+                case 'diceone':
+                    if ($('#dice1').prop('data-value') % 2 == 0) {
+                        $('#diceone').prop('data-value', 'dropped');
+                        $('#invest').prop('data-value', 'dropped1');
+                    }
+                    break;
+                case 'dicetwo':
+                    if ($('#dice2').prop('data-value') % 2 == 0) {
+                        $('#dicetwo').prop('data-value', 'dropped');
+                        $('#invest').prop('data-value', 'dropped1');
+                    }
+                    break;
+                case 'dicethree':
+                    if ($('#dice3').prop('data-value') % 2 == 0) {
+                        $('#dicethree').prop('data-value', 'dropped');
+                        $('#invest').prop('data-value', 'dropped1');
+                    }
+                    break;
+                case 'dicefour':
+                    if ($('#dice4').prop('data-value') % 2 == 0) {
+                        $('#dicefour').prop('data-value', 'dropped');
+                        $('#invest').prop('data-value', 'dropped1');
+                    }
+                    break;
+                case 'dicefive':
+                    if ($('#dice5').prop('data-value') % 2 == 0) {
+                        $('#dicefive').prop('data-value', 'dropped');
+                        $('#invest').prop('data-value', 'dropped1');
+                    }
+                    break;
+                case 'dicesix':
+                    if ($('#dice6').prop('data-value') % 2 == 0) {
+                        $('#dicesix').prop('data-value', 'dropped');
+                        $('#invest').prop('data-value', 'dropped1');
+                    }
+                    break;
+                case 'diceseven':
+                    if ($('#dice7').prop('data-value') % 2 == 0) {
+                        $('#diceseven').prop('data-value', 'dropped');
+                        $('#invest').prop('data-value', 'dropped1');
+                    }
+                    break;
+                case 'diceeight':
+                    if ($('#dice8').prop('data-value') % 2 == 0) {
+                        $('#diceeight').prop('data-value', 'dropped');
+                        $('#invest').prop('data-value', 'dropped1');
+                    }
+                    break;
+            }
+        }
+    }
+    function attack() {  //基本攻擊觸發效果
+        hit_sound.play();
+        $('#champ').css('top', `${parseInt($('#enemy').css('top')) + 50}px`);  //攻擊動畫
+        document.getElementById("champ").addEventListener("transitionend", getback);
+        $('#hit_effect').attr('src', 'image/hit_effect.png'); //打擊特效
+        $('#hit_effect').css('opacity', 0);
+        $('#hit_effect').css('visibility', 'visible');
+        $('#damagetoHealth').css('opacity', 0);
+        $('#healthBarG').css('width', 150 * parseInt(enemyHealth.innerText) / parseInt($('#enemyHealth').attr('data-value')));  //改變hp條顏色比例
+        $('#healthBarR').css('width', 150 * (parseInt($('#enemyHealth').attr('data-value')) - parseInt(enemyHealth.innerText)) / parseInt($('#enemyHealth').attr('data-value')));
+        if (parseInt(enemyHealth.innerText) <= 0) {
+            $('#enemy').css('opacity', 0);
+            reward1.onclick = recharge_second;  //設定第二次挑選技能的function
+            reward2.onclick = reroll_second;
+            reward3S.onclick = plus1_second;
+            reward4S.onclick = twelvesides_second;
+            reward5.onclick = gaindice1_second;
+            reward6.onclick = wildstrike_second;
+            reward3D.onclick = cutinto2_second;
+            reward4D.onclick = invest_second;
+            setTimeout(function () {
+                $('#victory').css('display', 'block'); //判斷敵人生命歸零 跳勝利視窗
+                $('#gameframe').css('display', 'none'); //隱藏遊戲介面
+            }, 1000);
+        }
+    }
+    function swordattack() {  //長劍攻擊
+        event.target.style.transform = 'scale(1,1)';
+        var X = $('#end').prop('value');
+        if ($('#sword').prop('data-value') != 'used') { //控制一回合只能drop在sword一次
+            if ($('#powerfulhit').prop('data-value') == 'charged') {  //判斷是否有發動技能
+                switch (X) {
+                    case 'diceone':
+                        enemyHealth.innerText -= $('#dice1').prop('data-value') * 2; //判定傷害
+                        damagetoHealth.innerText = `-${$('#dice1').prop('data-value') * 2}`;  //扣血數字動畫
+                        $('#diceone').prop('data-value', 'dropped');  //設定骰子已被dropped 不會觸發dragend事件
+                        break;
+                    case 'dicetwo':
+                        enemyHealth.innerText -= $('#dice2').prop('data-value') * 2; //判定傷害
+                        damagetoHealth.innerText = `-${$('#dice2').prop('data-value') * 2}`;  //扣血數字動畫
+                        $('#dicetwo').prop('data-value', 'dropped');  //設定骰子已被dropped 不會觸發dragend事件
+                        break;
+                    case 'dicethree':
+                        enemyHealth.innerText -= $('#dice3').prop('data-value') * 2; //判定傷害
+                        damagetoHealth.innerText = `-${$('#dice3').prop('data-value') * 2}`;  //扣血數字動畫
+                        $('#dicethree').prop('data-value', 'dropped');  //設定骰子已被dropped 不會觸發dragend事件
+                        break;
+                    case 'dicefour':
+                        enemyHealth.innerText -= $('#dice4').prop('data-value') * 2; //判定傷害
+                        damagetoHealth.innerText = `-${$('#dice4').prop('data-value') * 2}`;  //扣血數字動畫
+                        $('#dicefour').prop('data-value', 'dropped');  //設定骰子已被dropped 不會觸發dragend事件
+                        break;
+                }
+                $('#powerfulhit').prop('data-value', 'used');  //將技能設定為已使用
+            } else {
+                switch (X) {
+                    case 'diceone':
+                        enemyHealth.innerText -= $('#dice1').prop('data-value'); //判定傷害
+                        damagetoHealth.innerText = `-${$('#dice1').prop('data-value')}`;  //扣血數字動畫
+                        $('#diceone').prop('data-value', 'dropped');  //設定骰子已被dropped 不會觸發dragend事件
+                        break;
+                    case 'dicetwo':
+                        enemyHealth.innerText -= $('#dice2').prop('data-value'); //判定傷害
+                        damagetoHealth.innerText = `-${$('#dice2').prop('data-value')}`;  //扣血數字動畫
+                        $('#dicetwo').prop('data-value', 'dropped');  //設定骰子已被dropped 不會觸發dragend事件
+                        break;
+                    case 'dicethree':
+                        enemyHealth.innerText -= $('#dice3').prop('data-value'); //判定傷害
+                        damagetoHealth.innerText = `-${$('#dice3').prop('data-value')}`;  //扣血數字動畫
+                        $('#dicethree').prop('data-value', 'dropped');  //設定骰子已被dropped 不會觸發dragend事件
+                        break;
+                    case 'dicefour':
+                        enemyHealth.innerText -= $('#dice4').prop('data-value'); //判定傷害
+                        damagetoHealth.innerText = `-${$('#dice4').prop('data-value')}`;  //扣血數字動畫
+                        $('#dicefour').prop('data-value', 'dropped');  //設定骰子已被dropped 不會觸發dragend事件
+                        break;
+                }
+            }
+            attack();
+            $('#sword').prop('data-value', 'used'); //控制一回合只能drop在weapon一次
+            $('#sword').css('opacity', '0.5');  //攻擊後武器圖示半透明
+        }
+    }
+    function daggerattack() {  //短刀攻擊
+        var X = $('#dagger').prop('data-value');
+        var Y = $('#end').prop('value');
+        var Z = $('#champ').prop('data-value');
+        var one = $('#dice1').prop('data-value');
+        var two = $('#dice2').prop('data-value');
+        var three = $('#dice3').prop('data-value');
+        var four = $('#dice4').prop('data-value');
+        var five = $('#dice5').prop('data-value');
+        var six = $('#dice6').prop('data-value');
+        var seven = $('#dice7').prop('data-value');
+        var eight = $('#dice8').prop('data-value');
+        if (X >= 1 && X <= 12) {  //判斷已經drop過至少一顆骰子
+            switch (Y) {
+                case 'diceone':
+                    if (X == one) {
+                        if (Z == 'combo') {
+                            enemyHealth.innerText -= 3;
+                            damagetoHealth.innerText = `-3`;  //扣血數字動畫
+                            ROLL1(Math.floor(Math.random() * 6) + 1);
+                        } else {
+                            enemyHealth.innerText -= 2;
+                            damagetoHealth.innerText = `-2`;  //扣血數字動畫
+                            $('#champ').prop('data-value', 'combo');
+                        }
+                    } else {
+                        enemyHealth.innerText -= 1;
+                        damagetoHealth.innerText = `-1`;  //扣血數字動畫
+                        $('#champ').prop('data-value', ''); //重置combo
+                    }
+                    $('#dagger').prop('data-value', one);
+                    $('#diceone').prop('data-value', 'dropped');
+                    break;
+                case 'dicetwo':
+                    if (X == two) {
+                        if (Z == 'combo') {
+                            enemyHealth.innerText -= 3;
+                            damagetoHealth.innerText = `-3`;  //扣血數字動畫
+                            ROLL2(Math.floor(Math.random() * 6) + 1);
+                        } else {
+                            enemyHealth.innerText -= 2;
+                            damagetoHealth.innerText = `-2`;  //扣血數字動畫
+                            $('#champ').prop('data-value', 'combo');
+                        }
+                    } else {
+                        enemyHealth.innerText -= 1;
+                        damagetoHealth.innerText = `-1`;  //扣血數字動畫
+                        $('#champ').prop('data-value', '');
+                    }
+                    $('#dagger').prop('data-value', two);
+                    $('#dicetwo').prop('data-value', 'dropped');
+                    break;
+                case 'dicethree':
+                    if (X == three) {
+                        if (Z == 'combo') {
+                            enemyHealth.innerText -= 3;
+                            damagetoHealth.innerText = `-3`;  //扣血數字動畫
+                            ROLL3(Math.floor(Math.random() * 6) + 1);
+                        } else {
+                            enemyHealth.innerText -= 2;
+                            damagetoHealth.innerText = `-2`;  //扣血數字動畫
+                            $('#champ').prop('data-value', 'combo');
+                        }
+                    } else {
+                        enemyHealth.innerText -= 1;
+                        damagetoHealth.innerText = `-1`;  //扣血數字動畫
+                        $('#champ').prop('data-value', '');
+                    }
+                    $('#dagger').prop('data-value', three);
+                    $('#dicethree').prop('data-value', 'dropped');
+                    break;
+                case 'dicefour':
+                    if (X == four) {
+                        if (Z == 'combo') {
+                            enemyHealth.innerText -= 3;
+                            damagetoHealth.innerText = `-3`;  //扣血數字動畫
+                            ROLL4(Math.floor(Math.random() * 6) + 1);
+                        } else {
+                            enemyHealth.innerText -= 2;
+                            damagetoHealth.innerText = `-2`;  //扣血數字動畫
+                            $('#champ').prop('data-value', 'combo');
+                        }
+                    } else {
+                        enemyHealth.innerText -= 1;
+                        damagetoHealth.innerText = `-1`;  //扣血數字動畫
+                        $('#champ').prop('data-value', '');
+                    }
+                    $('#dagger').prop('data-value', four);
+                    $('#dicefour').prop('data-value', 'dropped');
+                    break;
+                case 'dicefive':
+                    if (X == five) {
+                        if (Z == 'combo') {
+                            enemyHealth.innerText -= 3;
+                            damagetoHealth.innerText = `-3`;  //扣血數字動畫
+                            ROLL5(Math.floor(Math.random() * 6) + 1);
+                        } else {
+                            enemyHealth.innerText -= 2;
+                            damagetoHealth.innerText = `-2`;  //扣血數字動畫
+                            $('#champ').prop('data-value', 'combo');
+                        }
+                    } else {
+                        enemyHealth.innerText -= 1;
+                        damagetoHealth.innerText = `-1`;  //扣血數字動畫
+                        $('#champ').prop('data-value', '');
+                    }
+                    $('#dagger').prop('data-value', five);
+                    $('#dicefive').prop('data-value', 'dropped');
+                    break;
+                case 'dicesix':
+                    if (X == six) {
+                        if (Z == 'combo') {
+                            enemyHealth.innerText -= 3;
+                            damagetoHealth.innerText = `-3`;  //扣血數字動畫
+                            ROLL6(Math.floor(Math.random() * 6) + 1);
+                        } else {
+                            enemyHealth.innerText -= 2;
+                            damagetoHealth.innerText = `-2`;  //扣血數字動畫
+                            $('#champ').prop('data-value', 'combo');
+                        }
+                    } else {
+                        enemyHealth.innerText -= 1;
+                        damagetoHealth.innerText = `-1`;  //扣血數字動畫
+                        $('#champ').prop('data-value', '');
+                    }
+                    $('#dagger').prop('data-value', six);
+                    $('#dicesix').prop('data-value', 'dropped');
+                    break;
+                case 'diceseven':
+                    if (X == seven) {
+                        if (Z == 'combo') {
+                            enemyHealth.innerText -= 3;
+                            damagetoHealth.innerText = `-3`;  //扣血數字動畫
+                            ROLL7(Math.floor(Math.random() * 6) + 1);
+                        } else {
+                            enemyHealth.innerText -= 2;
+                            damagetoHealth.innerText = `-2`;  //扣血數字動畫
+                            $('#champ').prop('data-value', 'combo');
+                        }
+                    } else {
+                        enemyHealth.innerText -= 1;
+                        damagetoHealth.innerText = `-1`;  //扣血數字動畫
+                        $('#champ').prop('data-value', '');
+                    }
+                    $('#dagger').prop('data-value', seven);
+                    $('#diceseven').prop('data-value', 'dropped');
+                    break;
+                case 'diceeight':
+                    if (X == eight) {
+                        if (Z == 'combo') {
+                            enemyHealth.innerText -= 3;
+                            damagetoHealth.innerText = `-3`;  //扣血數字動畫
+                            ROLL8(Math.floor(Math.random() * 6) + 1);
+                        } else {
+                            enemyHealth.innerText -= 2;
+                            damagetoHealth.innerText = `-2`;  //扣血數字動畫
+                            $('#champ').prop('data-value', 'combo');
+                        }
+                    } else {
+                        enemyHealth.innerText -= 1;
+                        damagetoHealth.innerText = `-1`;  //扣血數字動畫
+                        $('#champ').prop('data-value', '');
+                    }
+                    $('#dagger').prop('data-value', eight);
+                    $('#diceeight').prop('data-value', 'dropped');
+                    break;
+            }
+        } else if (!X) { //drop第一顆骰子
+            switch (Y) {
+                case 'diceone':
+                    $('#dagger').prop('data-value', one);
+                    $('#diceone').prop('data-value', 'dropped');
+                    break;
+                case 'dicetwo':
+                    $('#dagger').prop('data-value', two);
+                    $('#dicetwo').prop('data-value', 'dropped');
+                    break;
+                case 'dicethree':
+                    $('#dagger').prop('data-value', three);
+                    $('#dicethree').prop('data-value', 'dropped');
+                    break;
+                case 'dicefour':
+                    $('#dagger').prop('data-value', four);
+                    $('#dicefour').prop('data-value', 'dropped');
+                    break;
+                case 'dicefive':
+                    $('#dagger').prop('data-value', five);
+                    $('#dicefive').prop('data-value', 'dropped');
+                    break;
+                case 'dicesix':
+                    $('#dagger').prop('data-value', six);
+                    $('#dicesix').prop('data-value', 'dropped');
+                    break;
+                case 'diceseven':
+                    $('#dagger').prop('data-value', seven);
+                    $('#diceseven').prop('data-value', 'dropped');
+                    break;
+                case 'diceeight':
+                    $('#dagger').prop('data-value', eight);
+                    $('#diceeight').prop('data-value', 'dropped');
+                    break;
+            }
+            enemyHealth.innerText -= 1;
+            damagetoHealth.innerText = `-1`;  //扣血數字動畫
+        }
+        attack();
+        event.target.style.transform = 'scale(1,1)';
+    }
+    function reward_first() {  //第一次挑選技能畫面
+        $('.choiceFrame').css('display', 'none');
+        $('#gameframe').css('display', 'block');
+        $('.skill').css('visibility', 'hidden');
+        $('.weapon').css('visibility', 'hidden');
+        $('.rewardFrame').css('display', 'flex');
+        $('.weapon').css('opacity', '1');  //武器圖示恢復不透明
+        $('#plus1').css('opacity', '1');  //技能圖示恢復不透明
+        $('#reroll').css('opacity', '1');
+        $('#recharge').css('opacity', '1');
+        $('#wildstrike').css('opacity', '1');
+        $('#cutinto2').css('opacity', '1');
+        $('#invest').css('opacity', '1');
+        $('#powerfulhit').css('opacity', '1');
+        $('#moredices').css('opacity', '1');
+        document.getElementById("champ").removeEventListener("transitionend", getback);
+        for (x = 1; x <= 3; x += 1) {  //三個獎勵 做三次迴圈
+            var X = Math.floor(Math.random() * 6) + 1;
+            if ($('#sword').css('display') == 'block') {  //判斷目前是使用什麼武器
+                if (X == 1 && $('#reward1').css('display') == 'none') {
+                    $('#reward1').css('display', 'block');
+                } else if (X == 1 && $('#reward1').css('display') == 'block') { //判斷如果已出現就再多做一次迴圈
+                    x -= 1;
+                    continue;
+                }
+                if (X == 2 && $('#reward2').css('display') == 'none') {
+                    $('#reward2').css('display', 'block');
+                } else if (X == 2 && $('#reward2').css('display') == 'block') {
+                    x -= 1;
+                    continue;
+                }
+                if (X == 3 && $('#reward3S').css('display') == 'none') {
+                    $('#reward3S').css('display', 'block');
+                } else if (X == 3 && $('#reward3S').css('display') == 'block') {
+                    x -= 1;
+                    continue;
+                }
+                if (X == 4 && $('#reward4S').css('display') == 'none') {
+                    $('#reward4S').css('display', 'block');
+                } else if (X == 4 && $('#reward4S').css('display') == 'block') {
+                    x -= 1;
+                    continue;
+                }
+                if (X == 5 && $('#reward5').css('display') == 'none') {
+                    $('#reward5').css('display', 'block');
+                } else if (X == 5 && $('#reward5').css('display') == 'block') {
+                    x -= 1;
+                    continue;
+                }
+                if (X == 6 && $('#reward6').css('display') == 'none') {
+                    $('#reward6').css('display', 'block');
+                } else if (X == 6 && $('#reward6').css('display') == 'block') {
+                    x -= 1;
+                    continue;
+                }
+            } else if ($('#dagger').css('display') == 'block') {
+                if (X == 1 && $('#reward1').css('display') == 'none') {
+                    $('#reward1').css('display', 'block');
+                } else if (X == 1 && $('#reward1').css('display') == 'block') { //判斷如果已出現就再多做一次迴圈
+                    x -= 1;
+                    continue;
+                }
+                if (X == 2 && $('#reward2').css('display') == 'none') {
+                    $('#reward2').css('display', 'block');
+                } else if (X == 2 && $('#reward2').css('display') == 'block') {
+                    x -= 1;
+                    continue;
+                }
+                if (X == 3 && $('#reward3D').css('display') == 'none') {
+                    $('#reward3D').css('display', 'block');
+                } else if (X == 3 && $('#reward3D').css('display') == 'block') {
+                    x -= 1;
+                    continue;
+                }
+                if (X == 4 && $('#reward4D').css('display') == 'none') {
+                    $('#reward4D').css('display', 'block');
+                } else if (X == 4 && $('#reward4D').css('display') == 'block') {
+                    x -= 1;
+                    continue;
+                }
+                if (X == 5 && $('#reward5').css('display') == 'none') {
+                    $('#reward5').css('display', 'block');
+                } else if (X == 5 && $('#reward5').css('display') == 'block') {
+                    x -= 1;
+                    continue;
+                }
+                if (X == 6 && $('#reward6').css('display') == 'none') {
+                    $('#reward6').css('display', 'block');
+                } else if (X == 6 && $('#reward6').css('display') == 'block') {
+                    x -= 1;
+                    continue;
+                }
+            }
+        }
+        $('#victory').css('display', 'none');
+        $('.character').css('visibility', 'hidden');
+        $('.button').css('visibility', 'hidden');
+        $('.dice').css('visibility', 'hidden');
+    }
+    function recharge_first() {
+        if ($('#end').prop('data-value') == 'chose') { //判斷是否已選擇過一次
+            $('#recharge').css('bottom', '41.5%');
+            $('#end').prop('data-value', '');
+            rewardEnd();
+        } else {
+            $('#recharge').css('bottom', '31%');
+            $('#end').prop('data-value', 'chose');
+            $('#reward1').css('visibility', 'hidden');
+        }
+    }
+    function reroll_first() {
+        if ($('#end').prop('data-value') == 'chose') {
+            $('#reroll').css('bottom', '41.5%');
+            $('#end').prop('data-value', '');
+            rewardEnd();
+        } else {
+            $('#reroll').css('bottom', '31%');
+            $('#end').prop('data-value', 'chose');
+            $('#reward2').css('visibility', 'hidden');
+        }
+    }
+    function plus1_first() {
+        if ($('#end').prop('data-value') == 'chose') {
+            $('#plus1').css('bottom', '41.5%');
+            $('#end').prop('data-value', '');
+            rewardEnd();
+        } else {
+            $('#plus1').css('bottom', '31%');
+            $('#end').prop('data-value', 'chose');
+            $('#reward3S').css('visibility', 'hidden');
+        }
+    }
+    function twelvesides_first() {
+        if ($('#end').prop('data-value') == 'chose') {
+            $('#twelvesides').css('bottom', '41.5%');
+            $('#end').prop('data-value', '');
+            rewardEnd();
+        } else {
+            $('#twelvesides').css('bottom', '31%');
+            $('#end').prop('data-value', 'chose');
+            $('#reward4S').css('visibility', 'hidden');
+        }
+        $('#twelvesides').prop('data-value', 'triggered');
+    }
+    function gaindice1_first() {
+        if ($('#end').prop('data-value') == 'chose') {
+            $('#gaindice1').css('bottom', '41.5%');
+            $('#end').prop('data-value', '');
+            rewardEnd();
+        } else {
+            $('#gaindice1').css('bottom', '31%');
+            $('#end').prop('data-value', 'chose');
+            $('#reward5').css('visibility', 'hidden');
+        }
+        $('#gaindice1').prop('data-value', 'triggered');
+    }
+    function wildstrike_first() {
+        if ($('#end').prop('data-value') == 'chose') {
+            $('#wildstrike').css('bottom', '41.5%');
+            $('#end').prop('data-value', '');
+            rewardEnd();
+        } else {
+            $('#wildstrike').css('bottom', '31%');
+            $('#end').prop('data-value', 'chose');
+            $('#reward6').css('visibility', 'hidden');
+        }
+    }
+    function cutinto2_first() {
+        if ($('#end').prop('data-value') == 'chose') {
+            $('#cutinto2').css('bottom', '41.5%');
+            $('#end').prop('data-value', '');
+            rewardEnd();
+        } else {
+            $('#cutinto2').css('bottom', '31%');
+            $('#end').prop('data-value', 'chose');
+            $('#reward3D').css('visibility', 'hidden');
+        }
+    }
+    function invest_first() {
+        if ($('#end').prop('data-value') == 'chose') {
+            $('#invest').css('bottom', '41.5%');
+            $('#end').prop('data-value', '');
+            rewardEnd();
+        } else {
+            $('#invest').css('bottom', '31%');
+            $('#end').prop('data-value', 'chose');
+            $('#reward4D').css('visibility', 'hidden');
+        }
+    }
+    function rewardEnd() {  //第一次選完技能 進入第一關
+        $('.rewardFrame').css('display', 'none');
+        $('#reward1').css('display', 'none');
+        $('#reward2').css('display', 'none');
+        $('#reward3S').css('display', 'none');
+        $('#reward4S').css('display', 'none');
+        $('#reward5').css('display', 'none');
+        $('#reward6').css('display', 'none');
+        $('#reward3D').css('display', 'none');
+        $('#reward4D').css('display', 'none');
+        $('.skill').css('visibility', 'visible');
+        $('.weapon').css('visibility', 'visible');
+        $('.character').css('visibility', 'visible');
+        $('.button').css('visibility', 'visible');
+        start();
+    }
+    function reward_second() {  //第二次挑選技能畫面
+        $('#gameframe').css('display', 'block');
+        $('.skill').css('visibility', 'hidden');
+        $('.weapon').css('visibility', 'hidden');
+        $('.rewardFrame').css('display', 'flex');
+        $('#sword').css('opacity', '1');  //武器圖示恢復不透明
+        $('#plus1').css('opacity', '1');  //技能圖示恢復不透明
+        $('#reroll').css('opacity', '1');
+        $('#recharge').css('opacity', '1');
+        $('#wildstrike').css('opacity', '1');
+        $('#cutinto2').css('opacity', '1');
+        $('#invest').css('opacity', '1');
+        $('#powerfulhit').css('opacity', '1');
+        $('#moredices').css('opacity', '1');
+        document.getElementById("champ").removeEventListener("transitionend", getback);
+        for (x = 1; x <= 3; x += 1) {  //三個獎勵 做三次迴圈
+            var X = Math.floor(Math.random() * 6) + 1;
+            if ($('#sword').css('display') == 'block') {  //判斷目前是使用什麼武器
+                if (X == 1) {
+                    if (parseInt($('#recharge').css('bottom')) <= 0 && $('#reward1').css('display') == 'none') {
+                        $('#reward1').css('display', 'block');
+                    } else { //判斷如果已出現過/已擁有技能就再多做一次迴圈
+                        x -= 1;
+                        continue;
+                    }
+                }
+                if (X == 2) {
+                    if (parseInt($('#reroll').css('bottom')) <= 0 && $('#reward2').css('display') == 'none') {
+                        $('#reward2').css('display', 'block');
+                    } else {
+                        x -= 1;
+                        continue;
+                    }
+                }
+                if (X == 3) {
+                    if (parseInt($('#plus1').css('bottom')) <= 0 && $('#reward3S').css('display') == 'none') {
+                        $('#reward3S').css('display', 'block');
+                    } else {
+                        x -= 1;
+                        continue;
+                    }
+                }
+                if (X == 4) {
+                    if (parseInt($('#twelvesides').css('bottom')) <= 0 && $('#reward4S').css('display') == 'none') {
+                        $('#reward4S').css('display', 'block');
+                    } else {
+                        x -= 1;
+                        continue;
+                    }
+                }
+                if (X == 5) {
+                    if (parseInt($('#gaindice1').css('bottom')) <= 0 && $('#reward5').css('display') == 'none') {
+                        $('#reward5').css('display', 'block');
+                    } else {
+                        x -= 1;
+                        continue;
+                    }
+                }
+                if (X == 6) {
+                    if (parseInt($('#wildstrike').css('bottom')) <= 0 && $('#reward6').css('display') == 'none') {
+                        $('#reward6').css('display', 'block');
+                    } else {
+                        x -= 1;
+                        continue;
+                    }
+                }
+            } else if ($('#dagger').css('display') == 'block') {  //判斷目前是使用什麼武器
+                if (X == 1) {
+                    if (parseInt($('#recharge').css('bottom')) <= 0 && $('#reward1').css('display') == 'none') {
+                        $('#reward1').css('display', 'block');
+                    } else { //判斷如果已出現過/已擁有技能就再多做一次迴圈
+                        x -= 1;
+                        continue;
+                    }
+                }
+                if (X == 2) {
+                    if (parseInt($('#reroll').css('bottom')) <= 0 && $('#reward2').css('display') == 'none') {
+                        $('#reward2').css('display', 'block');
+                    } else {
+                        x -= 1;
+                        continue;
+                    }
+                }
+                if (X == 3) {
+                    if (parseInt($('#cutinto2').css('bottom')) <= 0 && $('#reward3D').css('display') == 'none') {
+                        $('#reward3D').css('display', 'block');
+                    } else {
+                        x -= 1;
+                        continue;
+                    }
+                }
+                if (X == 4) {
+                    if (parseInt($('#invest').css('bottom')) <= 0 && $('#reward4D').css('display') == 'none') {
+                        $('#reward4D').css('display', 'block');
+                    } else {
+                        x -= 1;
+                        continue;
+                    }
+                }
+                if (X == 5) {
+                    if (parseInt($('#gaindice1').css('bottom')) <= 0 && $('#reward5').css('display') == 'none') {
+                        $('#reward5').css('display', 'block');
+                    } else {
+                        x -= 1;
+                        continue;
+                    }
+                }
+                if (X == 6) {
+                    if (parseInt($('#wildstrike').css('bottom')) <= 0 && $('#reward6').css('display') == 'none') {
+                        $('#reward6').css('display', 'block');
+                    } else {
+                        x -= 1;
+                        continue;
+                    }
+                }
+            }
+        }
+        $('#victory').css('display', 'none');
+        $('.character').css('visibility', 'hidden');
+        $('.button').css('visibility', 'hidden');
+        $('.dice').css('visibility', 'hidden');
+    }
+    function recharge_second() {
+        if ($('#end').prop('data-value') == 'chose') {
+            $('#recharge').css('bottom', '62.5%');
+            $('#end').prop('data-value', '');
+            enterMap();
+        } else {
+            $('#recharge').css('bottom', '52%');
+            $('#end').prop('data-value', 'chose');
+            $('#reward1').css('visibility', 'hidden');
+        }
+    }
+    function reroll_second() {
+        if ($('#end').prop('data-value') == 'chose') {
+            $('#reroll').css('bottom', '62.5%');
+            $('#end').prop('data-value', '');
+            enterMap();
+        } else {
+            $('#reroll').css('bottom', '52%');
+            $('#end').prop('data-value', 'chose');
+            $('#reward2').css('visibility', 'hidden');
+        }
+    }
+    function plus1_second() {
+        if ($('#end').prop('data-value') == 'chose') {
+            $('#plus1').css('bottom', '62.5%');
+            $('#end').prop('data-value', '');
+            enterMap();
+        } else {
+            $('#plus1').css('bottom', '52%');
+            $('#end').prop('data-value', 'chose');
+            $('#reward3S').css('visibility', 'hidden');
+        }
+    }
+    function twelvesides_second() {
+        if ($('#end').prop('data-value') == 'chose') {
+            $('#twelvesides').css('bottom', '62.5%');
+            $('#end').prop('data-value', '');
+            enterMap();
+        } else {
+            $('#twelvesides').css('bottom', '52%');
+            $('#end').prop('data-value', 'chose');
+            $('#reward4S').css('visibility', 'hidden');
+        }
+        $('#twelvesides').prop('data-value', 'triggered');
+    }
+    function gaindice1_second() {
+        if ($('#end').prop('data-value') == 'chose') {
+            $('#gaindice1').css('bottom', '62.5%');
+            $('#end').prop('data-value', '');
+            enterMap();
+        } else {
+            $('#gaindice1').css('bottom', '52%');
+            $('#end').prop('data-value', 'chose');
+            $('#reward5').css('visibility', 'hidden');
+        }
+        $('#gaindice1').prop('data-value', 'triggered');
+    }
+    function wildstrike_second() {
+        if ($('#end').prop('data-value') == 'chose') {
+            $('#wildstrike').css('bottom', '62.5%');
+            $('#end').prop('data-value', '');
+            enterMap();
+        } else {
+            $('#wildstrike').css('bottom', '52%');
+            $('#end').prop('data-value', 'chose');
+            $('#reward6').css('visibility', 'hidden');
+        }
+    }
+    function cutinto2_second() {
+        if ($('#end').prop('data-value') == 'chose') {
+            $('#cutinto2').css('bottom', '62.5%');
+            $('#end').prop('data-value', '');
+            enterMap();
+        } else {
+            $('#cutinto2').css('bottom', '52%');
+            $('#end').prop('data-value', 'chose');
+            $('#reward3D').css('visibility', 'hidden');
+        }
+    }
+    function invest_second() {
+        if ($('#end').prop('data-value') == 'chose') {
+            $('#invest').css('bottom', '62.5%');
+            $('#end').prop('data-value', '');
+            enterMap();
+        } else {
+            $('#invest').css('bottom', '52%');
+            $('#end').prop('data-value', 'chose');
+            $('#reward4D').css('visibility', 'hidden');
+        }
+    }
+    function enterMap() {  //選完獎勵後進入地圖介面
+        $('#frame').css('background', 'linear-gradient(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url(image/background_02.jpg) no-repeat 0% 20%/ cover');
+        $('.rewardFrame').css('display', 'none');
+        $('#reward1').css('display', 'none');
+        $('#reward2').css('display', 'none');
+        $('#reward3S').css('display', 'none');
+        $('#reward4S').css('display', 'none');
+        $('#reward5').css('display', 'none');
+        $('#reward6').css('display', 'none');
+        $('#reward3D').css('display', 'none');
+        $('#reward4D').css('display', 'none');
+        $('#map').css('display', 'block');
+        $('.eventpoint').css('display', 'block');
+        $('#player').css('display', 'block');
+        $('.weapon').css('visibility', 'hidden');
+        $('.skill').css('visibility', 'hidden');
+        itemLeave();
+        $('#champ').css('transition', 'top 0.5s ease'); //主角動畫更改        
+    }
+    hideReward.onclick = function () {  //隱藏/顯示獎勵按鈕
+        if ($('.rewardFrame').css('display') == 'flex') {
+            $('#rewardTitle').css('display', 'none');
+            $('#rewardBox').css('display', 'none');
+            $('.skill').css('visibility', 'visible');
+            $('.weapon').css('visibility', 'visible');
+            document.getElementById('hideReward').innerText = '顯示獎勵';
+        } else {
+            $('.rewardFrame').css('display', 'flex');
+            $('.skill').css('visibility', 'hidden');
+            $('.weapon').css('visibility', 'hidden');
+            document.getElementById('hideReward').innerText = '隱藏獎勵';
+        }
+    }
+    event1.onclick = function () {
+        $('#player').css({ 'left': '678px', 'bottom': '212px' });
+        setTimeout(function () {
+            enter_stage.play();
+            nextstage();
+            refresh();
+        }, 2000)
+    }
+    event2.onclick = function () {
+        $('#player').css({ 'left': '970px', 'bottom': '272px' });
+        setTimeout(function () {
+            enter_stage.play();
+            nextstage();
+            refresh();
+        }, 2000)
+    }
+    box1.onclick = function () {
+        $('#player').css({ 'left': '1255px', 'bottom': '240px' });
+        setTimeout(function () {
+            enter_stage.play();
+            nextstage();
+            refresh();
+        }, 2000)
+    }
+    function nextstage() {  //進入下一關 更改背景、敵人圖案、敵人血量、敵人距離
+        $('#map').css('display', 'none');  //地圖介面消失
+        $('.eventpoint').css('display', 'none');
+        $('#player').css('display', 'none');
+        $('.weapon').css('visibility', 'visible');
+        $('.skill').css('visibility', 'visible');
+        $('.character').css('visibility', 'visible');
+        $('.button').css('visibility', 'visible');
+        $('#healthBarG').css('width', 150);  //恢復hp條顏色比例
+        $('#healthBarR').css('width', 0);
+        $('#powerfulhit').prop('data-value', 'unused');  //恢復絕招
+        $('#powerfulhit').css('opacity', '1');
+        $('#moredices').prop('data-value', 'unused');
+        $('#moredices').css('opacity', '1');
+        $('#invest').prop('data-value', 'unused'); //重置invest技能
+        $('#frame').css('background', 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.1)), url(image/background_02.jpg) no-repeat 0% 20%/ cover'); //設定新背景
+        $('#enemy').css('background-image', 'url(image/ugly_slime.png)'); //設定敵人
+        $('#enemy').css('opacity', 1);
+        $('#distance').text(4);
+        $('#distance').attr('data-value', 7);
+        $('#enemyHealth').text(40);
+        $('#enemyHealth').attr('data-value', 40);
+        damagetoHealth.innerText = '';
+        $('#damagetoHealth').css('opacity', 1);
+        $('#damagetoHealth').css('top', '10px');
+        $('#hit_effect').attr('src', ''); //重置打擊特效
+        $('#hit_effect').css('opacity', 1);
+        $('#hit_effect').css('top', '53px');
+        $('#hit_effect').css('visibility', 'hidden');
+        itemEnter();
+    }
+    function refresh() {  //回合結束的刷新
+        $('.weapon').css('opacity', '1');  //武器圖示恢復不透明
+        $('#plus1').css('opacity', '1');  //技能圖示恢復不透明
+        $('#reroll').css('opacity', '1');
+        $('#recharge').css('opacity', '1');
+        $('#wildstrike').css('opacity', '1');
+        $('#cutinto2').css('opacity', '1');
+        $('#roll').prop('value', 'unused'); //恢復骰子、絕招、主動技能
+        $('#sword').prop('data-value', 'unused');
+        $('#dagger').prop('data-value', '');
+        $('#plus1').prop('data-value', 'unused');
+        $('#reroll').prop('data-value', 'unused');
+        $('#recharge').prop('data-value', 'unused');
+        $('#wildstrike').prop('data-value', 'unused');
+        $('#cutinto2').prop('data-value', 'unused');
+        $('#champ').prop('data-value', ''); //清空重製短刀攻擊的combo
+        $('#dice1').css('bottom', '-100px');  //骰子圖片回到最底
+        $('#dice2').css('bottom', '-100px');
+        $('#dice3').css('bottom', '-100px');
+        $('#dice4').css('bottom', '-100px');
+        $('#dice5').css('bottom', '-100px');
+        $('#dice6').css('bottom', '-100px');
+        $('#dice7').css('bottom', '-100px');
+        $('#dice8').css('bottom', '-100px');
+    }
+    function endturn() {
+        var slime_move = new Audio('sound/slime_move.mp3'); //敵人靠近音效
+        slime_move.play();
+        damagetoHealth.innerText = '';
+        $('#damagetoHealth').css('opacity', 1);
+        $('#hit_effect').attr('src', ''); //打擊特效
+        $('#hit_effect').css('opacity', 1);
+        $('#hit_effect').css('visibility', 'hidden');
+        var X = 600 / (parseInt($('#distance').attr('data-value')));
+        $('#enemy').css('top', `+=${X}`); //敵人靠近動畫
+        $('#damagetoHealth').css('top', `+=${X}`); //扣血數字、特效跟著移動
+        $('#hit_effect').css('top', `+=${X}`);
+        refresh();
+        if ($('#powerfulhit').prop('data-value') == 'charged') {  //若攻擊完才按長劍絕招，回合結束後恢復為未使用狀態
+            $('#powerfulhit').prop('data-value', 'unused');
+            $('#powerfulhit').css('opacity', '1');
+        }
+        $('#distance').text(`${parseInt($('#distance').text()) - 1}`);
+        var Y = $('#distance').text();  //判斷距離數字以裁定是否GG
+        if (Y <= 0) {
+            setTimeout(function () {
+                $('#defeated').css('display', 'block');
+                $('#gameframe').css('display', 'none');
+            }, 500);
+        }
+    }
+    function restartgame() {
+        $('#defeated').css('display', 'none');
+        $('#title').css('display', 'block');
+        $('#gameframe').css('display', 'block');
+        $('#healthBarG').css('width', 150);  //恢復hp條顏色比例
+        $('#healthBarR').css('width', 0);
+        $('#powerfulhit').prop('data-value', 'unused');  //恢復絕招
+        $('#moredices').prop('data-value', 'unused');
+        $('#frame').css('background', 'linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0)), url(image/background_02.jpg) no-repeat 0% 20%/ cover'); //恢復背景
+        $('#enemy').css('background-image', 'url(image/slime.png)'); //恢復敵人為第一關預設狀態
+        $('#powerfulhit').css('opacity', '1');
+        $('#moredices').css('opacity', '1');
+        $('#powerfulhit').css('display', 'none');
+        $('#moredices').css('display', 'none');
+        $('#distance').text(3);
+        $('#distance').attr('data-value', 5);
+        $('#enemyHealth').text(20);
+        $('#enemyHealth').attr('data-value', 20);
+        $('#twelvesides').css('bottom', '-200%'); //失去所有技能
+        $('#twelvesides').prop('data-value', 'untriggered');
+        $('#gaindice1').css('bottom', '-200%');
+        $('#gaindice1').prop('data-value', 'untriggered');
+        $('#cutinto2').css('bottom', '-200%');
+        $('#invest').css('bottom', '-200%');
+        $('#invest').prop('data-value', 'unused');
+        $('#wildstrike').css('bottom', '-200%');
+        $('#recharge').css('bottom', '-200%');
+        $('#reroll').css('bottom', '-200%');
+        $('#plus1').css('bottom', '-200%');
+        $('#sword').css('display', 'none');  //失去武器
+        $('#dagger').css('display', 'none');
+        $('#damagetoHealth').css('top', '10px');  //打擊特效回到預設位置
+        $('#hit_effect').css('top', '53px');
+        $('#player').css({ 'left': '49%', 'bottom': '1%' });  //地圖介面主角回到原點
+        $('#champ').css('transition', 'top 0.5s ease'); //主角動畫更改
+        refresh();
+        itemLeave();
+        $('#reward1').css('visibility', 'visible');  //重置技能選取介面
+        $('#reward2').css('visibility', 'visible');
+        $('#reward3S').css('visibility', 'visible');
+        $('#reward4S').css('visibility', 'visible');
+        $('#reward5').css('visibility', 'visible');
+        $('#reward6').css('visibility', 'visible');
+        $('#reward3D').css('visibility', 'visible');
+        $('#reward4D').css('visibility', 'visible');
+        reward1.onclick = recharge_first;
+        reward2.onclick = reroll_first;
+        reward3S.onclick = plus1_first;
+        reward4S.onclick = twelvesides_first;
+        reward5.onclick = gaindice1_first;
+        reward6.onclick = wildstrike_first;
+        reward3D.onclick = cutinto2_first;
+        reward4D.onclick = invest_first;
+    }
+</script>
+
+</html>
